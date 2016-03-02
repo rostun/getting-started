@@ -27,7 +27,7 @@ body {
 
 .info {
 	background: #FDEEF4; 
-	background-image: url(images/lulu__s_cupcake_by_blueberryjoe-d4xor97.png);
+	background-image: url(../stylesheets/lulu__s_cupcake_by_blueberryjoe-d4xor97.png);
 	background-repeat: no-repeat;
 	background-position: 1em 1.75em;
 	background-size: 3em 3em;
@@ -48,7 +48,7 @@ body {
 
 #navlist li {
   list-style: none;
-  background: url(images/mushroom.png);
+  background: url(../stylesheets/mushroom.png);
   background-repeat: no-repeat;
   background-position: 0em .60em;
   background-size: 1em 1em;

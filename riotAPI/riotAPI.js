@@ -10,6 +10,7 @@ var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
 var bodyParser = require('body-parser');
 
+app.use("/stylesheets", express.static(__dirname + '/stylesheets'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -19,28 +20,6 @@ app.set('port', 3000);
 
 app.get('/',function(req,res){
   res.render('home');
-});
-
-app.get('/getRequest',function(req,res){
-  var qParams = [];
-  for (var p in req.query){
-    qParams.push({'name':p,'value':req.query[p]})
-  }
-  var context = {};
-  context.dataList = qParams;
-  res.render('getRequest', context);
-});
-
-app.post('/postRequest', function(req,res){
-  var qParams = [];
-  for (var p in req.body){
-    qParams.push({'name':p,'value':req.body[p]})
-  }
-  console.log(qParams);
-  console.log(req.body);
-  var context = {};
-  context.dataList = qParams;
-  res.render('postRequest', context);
 });
 
 app.use(function(req,res){
