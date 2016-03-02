@@ -1,0 +1,34 @@
+My api key: edd641e1-be3f-4ffa-aa56-64945420b0ba
+
+What is an API?
+	In layman's terms, an API is an agreement between two people stating: 
+		"If you give me this instruction, I will perform this action, or return this information" 
+	
+	You can consider an API as the alternative "user interface" that software uses to interact with other software.
+	We humans are familiar with user interfaces that have fancy layouts with buttons, fonts, colors, graphics, etc; 
+	and most of that is unnecessary to a machine.  Machines wouldn't open up a program or website, take a screenshot 
+	of that section of the monitor, and then try to parse its meaning visually like a human would.
+
+	Machines just need a shorthand way to do things like checking the current weather or adding an event to your calendar.  
+	That's what an API provides.
+
+APIs can be web-based, or specific to a platform.  Google has APIs for search, calendars, translations, etc.  Facebook and Twitter have APIs that allow software to automatically post status updates.  Apple provides many APIs for building iPhone apps.
+	
+Before you can start using the API, you will need:
+
+1. A League of Legends account
+2. A Riot Games developer API key
+	you can find the API key in your dashboard (https://developer.riotgames.com/)
+3. A web server (or web application container) where you can deploy and run code in a language that allows you to make web service requests 
+(This is for building a web app, something that will run in any web browser. Native mobile apps are another story.)
+4. Some experience writing code in that language.
+
+You probably already have a LoL account. To get the API key, you log in with your LoL username and password at the Riot Games developer website 
+(https://developer.riotgames.com/) After you agree to the terms of use, you'll see your developer API key. Copy and paste it in a file somewhere. 
+You'll need it to use the API.
+
+According to the Riot Game's Developer getting started guide, it returns JSON data. In turn what this means is that you can use any programming 
+language that has the ability to manipulate JSON objects. 
+
+You can think of the API key as a password for you to gain access to the information. There are some requirements for this however; Knowledge of 
+basic web calls is a must, JSON Data for obvious reasons, and the big one is Object Oriented Design.  
