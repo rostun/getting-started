@@ -1,23 +1,29 @@
+<!--
+	Rosa Tung
+	Riot API Example
+	riotApiTest.html
+-->
+
 <!DOCTYPE html>
 
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>check weather</title>
+		<title>Riot API using Javascript</title>
 	</head>
 	<body>
-		<h1> Weather Information </h1>
-		Enter Zipcode: 	<input type="number" id="zipCode"/>
-						<input type="button" value="Search by Zipcode" onclick="searchByZip()"/> 
-						<br><br> or <br><br>
-		
-		Enter City: <input type="text" id="cityName"/>
-					<input type="button" value="Search by City" onclick="searchByCity()"/> 
-					<br><br>
-					
-		Temperature in degrees Fahrenheit: <span id="temperature"></span><br>
-		Humidity Percentage: <span id="humidity"></span>
-		
-		<script src="weather.js"></script>
+		<div>
+			<h1> Summoner Information </h1>
+			
+			<p>
+				Enter Summoner Name: <input type="text" id="summonerName"/>
+				<input type="button" value="Search Summoner" onclick="searchSummoner()"/> 
+			</p>
+			<p>
+				Summoner ID: <span id="summonerID"></span><br>
+				Summoner Level: <span id="summonerLevel"></span>
+			</p>
+		</div>
+		<script src="riotApiTest.js"></script>
 	</body>
 </html>

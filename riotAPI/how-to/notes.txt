@@ -13,7 +13,7 @@ What is an API?
 	That's what an API provides.
 
 APIs can be web-based, or specific to a platform.  Google has APIs for search, calendars, translations, etc.  Facebook and Twitter have APIs that allow software to automatically post status updates.  Apple provides many APIs for building iPhone apps.
-	
+
 Before you can start using the API, you will need:
 
 1. A League of Legends account
@@ -23,12 +23,22 @@ Before you can start using the API, you will need:
 (This is for building a web app, something that will run in any web browser. Native mobile apps are another story.)
 4. Some experience writing code in that language.
 
-You probably already have a LoL account. To get the API key, you log in with your LoL username and password at the Riot Games developer website 
-(https://developer.riotgames.com/) After you agree to the terms of use, you'll see your developer API key. Copy and paste it in a file somewhere. 
-You'll need it to use the API.
+	You probably already have a LoL account. To get the API key, you log in with your LoL username and password at the Riot Games developer website 
+	(https://developer.riotgames.com/) After you agree to the terms of use, you'll see your developer API key. Copy and paste it in a file somewhere. 
+	You'll need it to use the API.
 
-According to the Riot Game's Developer getting started guide, it returns JSON data. In turn what this means is that you can use any programming 
-language that has the ability to manipulate JSON objects. 
+	According to the Riot Game's Developer getting started guide, it returns JSON data. In turn what this means is that you can use any programming 
+	language that has the ability to manipulate JSON objects. 
 
-You can think of the API key as a password for you to gain access to the information. There are some requirements for this however; Knowledge of 
-basic web calls is a must, JSON Data for obvious reasons, and the big one is Object Oriented Design.  
+	You can think of the API key as a password for you to gain access to the information. There are some requirements for this however; Knowledge of 
+	basic web calls is a must, JSON Data for obvious reasons, and the big one is Object Oriented Design.  
+	
+Ever Riot Games API request requires an API key, so you will need to include your API key using the 
+api_key parameter on each request.
+
+Loads missPapaya's basic summoner object in JSON
+	https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/RiotSchmick?api_key=<key>
+
+	https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/missPapaya?api_key=edd641e1-be3f-4ffa-aa56-64945420b0ba
+		vs
+	https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/rosalitamaria?api_key=edd641e1-be3f-4ffa-aa56-64945420b0ba

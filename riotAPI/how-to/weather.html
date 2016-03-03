@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>check weather</title>
+	</head>
+	<body>
+		<h1> Weather Information </h1>
+		Enter Zipcode: 	<input type="number" id="zipCode"/>
+						<input type="button" value="Search by Zipcode" onclick="searchByZip()"/> 
+						<br><br> or <br><br>
+		
+		Enter City: <input type="text" id="cityName"/>
+					<input type="button" value="Search by City" onclick="searchByCity()"/> 
+					<br><br>
+					
+		Temperature in degrees Fahrenheit: <span id="temperature"></span><br>
+		Humidity Percentage: <span id="humidity"></span>
+		
+		<script src="weather.js"></script>
+	</body>
+</html>
