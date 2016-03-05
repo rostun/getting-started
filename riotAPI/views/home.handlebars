@@ -1,79 +1,96 @@
 <body>
-	<body>
 		<div id = "feature">
 			<div class = "wrapper" > <!--at the top-->
-			<h2>Getting Started with Riot's API</h2>
-				<p>This guide covers getting up and running with Ruby on Rails.</p>
-				<p>After reading this guide, you will know:</p>
+			<h2>Getting Started with Riot's API using Javascript</h2>
+				<p>After reading this guide, you will know (or review):</p>
 				<ul id = "navlist">
-					<li>How to install Rails, create a new Rails application, and connect your application to a database.</li>
-					<li>The general layout of a Rails application.</li>
-					<li>The basic principles of MVC (Model, View, Controller) and RESTful design.</li>
-					<li>How to quickly generate the starting pieces of a Rails application.</li>
+					<li> How to use Javascript to make HTTP calls </li>
+					<li> How to access and work with JSON objects </li>
+					<li> How to implement the Summoner Look Up API </li>
+					<li> How to translate Summoner Look Up to rest of Riot API's </li>
 				</ul>
 			</div>
 		</div>
 		<div class = "wrapper" >
 			<h3>1 Guide Assumptions</h3>
-				<p>This guide is designed for beginners who want to get started with a Rails
-				application from scratch. It does not assume that you have any prior experience
-				with Rails. However, to get the most out of it, you need to have some
-				prerequisites installed:</p>
+			
+			<p>This guide is designed for both beginners who are looking for a way to get started 
+			using Riot's API or just for someone curious about how to use Javascript to implement the process.
+			It does not assume that you have any prior experience working with API's, but it will help. 
+			There are a few things that you need to follow along with the examples in this guide:</p>
+			
 				<ul>
-					<li>The <a href="https://www.ruby-lang.org/en/downloads">Ruby</a> language version 1.9.3 or newer.</li>
-					<li>The <a href="https://rubygems.org">RubyGems</a> packaging system, which is installed with Ruby
-					versions 1.9 and later. To learn more about RubyGems, please read the <a href="http://guides.rubygems.org">RubyGems Guides</a>.</li>
-					<li>A working installation of the <a href="https://www.sqlite.org">SQLite3 Database</a>.</li>
+					<li>A <a href="http://www.leagueoflegends.com">League of Legends</a> account.</li>
+					<li>Something that handles HTTP requests and responses. </li>
 				</ul>
-				<p>Rails is a web application framework running on the Ruby programming language.
-				If you have no prior experience with Ruby, you will find a very steep learning
-				curve diving straight into Rails. There are several curated lists of online resources
-				for learning Ruby:</p>
+			
+			<p>If you are totally new to programming don't worry, you don't need any prior experience to follow along with
+			the guide. You don't even need to download anything to test your API, although having some kind of text editor like 
+			<a href="https://notepad-plus-plus.org/">notepad++</a> might help make things more readable. But you don't even need 
+			that either, you can just make a txt document and change the extension to whatever you need.</p>
+			
+			<p> On the other hand, if you are using this as a starting point for Javascript or even HTML, here are some introduction 
+			resources to get you started:</p>
+			
 				<ul>
-					<li><a href="https://www.ruby-lang.org/en/documentation/">Official Ruby Programming Language website</a></li>
-					<li><a href="http://resrc.io/list/10/list-of-free-programming-books/#ruby">reSRC's List of Free Programming Books</a></li>
+					<li><a href="http://www.w3schools.com/js/">w3schools Javascript</a></li>
+					<li><a href="http://eloquentjavascript.net/">Eloquent Javascript</a></li>
+					<li><a href="http://www.w3schools.com/html/html_intro.asp">w3schools HTML</a></li>
 				</ul>
-				<p>Be aware that some resources, while still excellent, cover versions of Ruby as old as
-				1.6, and commonly 1.8, and will not include some syntax that you will see in day-to-day
-				development with Rails.</p>
+			
+			<p>This guide only goes over code examples that you can easily test out as long as you have something that handles HTTP request 
+			and responses. What it means to the average person is just basically opening up your html file in browser and, theoretically, 
+			everything should work. If or how you want to host it is totally up to you! Let's get started! </p>	
 		</div>
 		<div class = "wrapper">
-			<h3 id="what-is-rails-questionmark">2 What is Rails?</h3>
-			<p>Rails is a web application development framework written in the Ruby language.
-			It is designed to make programming web applications easier by making assumptions
-			about what every developer needs to get started. It allows you to write less
-			code while accomplishing more than many other languages and frameworks.
-			Experienced Rails developers also report that it makes web application
-			development more fun.</p>
-			<p>Rails is opinionated software. It makes the assumption that there is the "best"
-			way to do things, and it's designed to encourage that way - and in some cases to
-			discourage alternatives. If you learn "The Rails Way" you'll probably discover a
-			tremendous increase in productivity. If you persist in bringing old habits from
-			other languages to your Rails development, and trying to use patterns you
-			learned elsewhere, you may have a less happy experience.</p>
-			<p>The Rails philosophy includes two major guiding principles:</p>
-			<ul>
-				<li><strong>Don't Repeat Yourself:</strong> DRY is a principle of software development which
-				states that "Every piece of knowledge must have a single, unambiguous, authoritative
-				representation within a system." By not writing the same information over and over
-				again, our code is more maintainable, more extensible, and less buggy.</li>
-				<li><strong>Convention Over Configuration:</strong> Rails has opinions about the best way to do many
-				things in a web application, and defaults to this set of conventions, rather than
-				require that you specify every minutiae through endless configuration files.</li>
-			</ul>
+			<h3>2 What is an API? </h3>
+			<p>In layman's terms, you can think of an API as an agreement between two people stating </p>
+				<div class="info">
+					<p><strong>"If you give me this instruction, I will perform this action, or return this information"</strong></p>
+				</div>
+			<p>Most people are used to interacting and navigating on a website through some sort of graphical interface to get information, 
+			for example, to check the weather. However, machines don't need any of that to check the weather, and neither do you, if you know 
+			how to comprehend this alternative "user interface" that software use to interact with other software. This shorthand way 
+			to do things like checking the current weather or adding an event to your calendar is what an API provides.</p>
 		</div>
-		<div>
-			<h3 id="creating-a-new-rails-project">3 Creating a New Rails Project</h3>
-			<p>The best way to use this guide is to follow each step as it happens, no code or
-			step needed to make this example application has been left out, so you can
-			literally follow along step by step.</p>
-			<p>By following along with this guide, you'll create a Rails project called
-			<code>blog</code>, a (very) simple weblog. Before you can start building the application,
-			<div class="info">
-				<p>The examples below use <code>$</code> to represent your terminal prompt in a UNIX-like OS,
-				though it may have been customized to appear differently. If you are using Windows,
-				your prompt will look something like <code>c:\source_code&gt;</code></p>
-			</div>
+		<div class = "wrapper">
+			<h3>3 Lets get Started: The API Key </h3>
+			
+			<p>You can think of the API key as a password for you to gain access to information. Every Riot Games API request requires an API key, 
+			so you will need to include your API key using the api_key for each request you want to make/use.</p>
+			
+			<p>If you play or have played League of Legends before, you probably already have a League of Legends account. 
+			So to get the API key, all you need to do is navigate to the <a href="https://developer.riotgames.com/sign-in">Riot Games Developers</a> 
+			website and sign in with your summoner name and password. After you've signed up, you will be able to see your API
+			key on the dashboard. <strong> Copy and paste it in a file somewhere. </strong> You can always go back to your dashboard to retrieve it again
+			but it's good to get into the habit of making sure you have a copy of your keys floating around somewhere (somewhere safe). 
+			
+			<p>You'll see that there is a short <a href="https://developer.riotgames.com/docs/getting-started">getting started</a> orientation page 
+			that you can read. </p>
+			
+			<img src="../stylesheets/gettingStarted.png" alt="getting started" style="width:100%;height:100%;">
+			
+			<p>There are several different versions of keys, the one you get by default has the smallest rate limit. Unless you're trying to 
+			make a site like op.gg or have big dreams, you'll be quite okay with the key you have now. They also mention that you should be familiar with 
+			JSON objects  and Object Oriented programming before getting started. Don't worry brah, this guide has got yah covered on dat! </p>
+		</div>
+		<div class = "wrapper">
+			<h3>4 Setting Things Up</h3>
+			<p>In layman's terms, you can think of an API as an agreement between two people stating </p>
+		</div>
+		<div class = "wrapper">
+			<h3>5 Web Calls </h3>
+			<p>In layman's terms, you can think of an API as an agreement between two people stating </p>
+		</div>
+		<div class = "wrapper">
+			<h3>6 JSON Objects and Object Oriented Design </h3>
+			<p>According to the Riot Game's Developer getting started guide, it returns JSON data. In turn what this means is that you can use any programming 
+		language that has the ability to manipulate JSON objects. </p>
+		</div>
+		<div class = "wrapper">
+			<h3>7 Riot API's</h3>
+			<p>According to the Riot Game's Developer getting started guide, it returns JSON data. In turn what this means is that you can use any programming 
+		language that has the ability to manipulate JSON objects. </p>
 		</div>
 		<div>
 			cupcake bullet by blueberryjoe.deviantart.com
