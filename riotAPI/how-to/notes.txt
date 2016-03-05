@@ -12,7 +12,8 @@ What is an API?
 	Machines just need a shorthand way to do things like checking the current weather or adding an event to your calendar.  
 	That's what an API provides.
 
-APIs can be web-based, or specific to a platform.  Google has APIs for search, calendars, translations, etc.  Facebook and Twitter have APIs that allow software to automatically post status updates.  Apple provides many APIs for building iPhone apps.
+APIs can be web-based, or specific to a platform.  Google has APIs for search, calendars, translations, etc.  Facebook and Twitter have APIs that allow software to automatically post status updates.  
+Apple provides many APIs for building iPhone apps.
 
 Before you can start using the API, you will need:
 
@@ -157,10 +158,8 @@ team-v2.4
 	/api/lol/{region}/v2.4/team/{teamIds} 
 		Get teams mapped by team ID for a given list of team IDs. (REST)	
 		
-		
-		
-		
-		
+Use Node
+http://blog.modulus.io/absolute-beginners-guide-to-nodejs
 		
 		
 		
