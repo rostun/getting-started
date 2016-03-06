@@ -13,5 +13,17 @@ function searchSummoner(){
 	req.send(); //Sends the request to the server (used for GET)
     req.addEventListener('load', function(){ //listen to what Riot gives us
 		console.log(req.responseText);
+		var response = JSON.parse(req.responseText); //get response text from request
+		console.log(response);
+		console.log(response.misspapaya.id);
+		document.getElementById('id').textContent = response.misspapaya.id;
+		document.getElementById('name').textContent = response.misspapaya.name;
+		document.getElementById('profileIconId').textContent = response.misspapaya.profileIconId;
+		document.getElementById('summonerLevel').textContent = response.misspapaya.summonerLevel;
+		document.getElementById('revisionDate').textContent = response.misspapaya.revisionDate;
 	});					
 }
+
+		//console.log(response["misspapaya"]["id"]);
+		//console.log(response."aPromisedName".id);
+		//console.log(response[aPromisedName]["id"]);

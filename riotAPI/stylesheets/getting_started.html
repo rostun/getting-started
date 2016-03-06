@@ -82,7 +82,7 @@
 			<p>You'll see that there is a short <a href="https://developer.riotgames.com/docs/getting-started">getting started</a> orientation page 
 			that you can read. </p>
 			
-			<img src="../stylesheets/gettingStarted.png" alt="getting started" style="width:100%;height:100%;">
+			<center><img src="../stylesheets/gettingStarted.png" alt="getting started" style="width:100%;height:100%;"></center>
 			
 			<p>There are several different versions of keys, the one you get by default has the smallest rate limit. Unless you're trying to 
 			make a site like op.gg or have big dreams, you'll be quite okay with the key you have now. They also mention that you should be familiar 
@@ -98,11 +98,11 @@
 			<code>&ltkey&gt</code> with <strong>your API Key</strong>). If you want to see your details, replace <code>riotSchmick</code> with your 
 			summoner name</p>
 			
-			<img src="../stylesheets/testAPI.png" alt="getting started" style="width:100%;height:100%;">
+			<center><img src="../stylesheets/testAPI.png" alt="getting started" style="width:100%;height:100%;"></center>
 			
 			<p>If your key works, you should see something like this: </p>
 			
-			<img src="../stylesheets/testAPISuccess.png" alt="getting started" style="width:100%;height:100%;">
+			<center><img src="../stylesheets/testAPISuccess.png" alt="getting started" style="width:100%;height:100%;"></center>
 			
 			<p>You can probably already tell how the information is organized for this request. You see your summoner name and details about your account 
 			in quotes, and that this information is organized in a certain way. You can only assume this form is in <strong>JSON</strong>, because that's 
@@ -120,7 +120,7 @@
 			
 			<p>If you're a beginner, you must be thinking, what did I just do? Well, if you go to the folder where this file is and double-click on it, 
 			or right click and open it, it should pop up in your web browser as something that looks like this (folllowAlong.html could be any html file):</p>
-			<img src="../stylesheets/followAlong.png" alt="follow along" style="width:75%;height:75%;">
+			<center><img src="../stylesheets/followAlong.png" alt="follow along" style="width:75%;height:75%;"></center>
 			
 			<p>An HTML file is basically the web page version of a text file and comes with it's own rules for implementation. 
 			You might notice that your html file doesn't look like the web page you just opened, although you can see the contents distributed throughout
@@ -141,7 +141,7 @@
 				</div>		
 				
 			<p>After you've saved and refreshed the HTML page you can see that you've got a button! Sweet! </p>
-			<img src="../stylesheets/button.png" alt="follow along" style="width:50%;height:50%;">
+			<center><img src="../stylesheets/button.png" alt="follow along" style="width:50%;height:50%;"></center>
 			
 			<p>But again, it probably didn't take you long to figure out that 
 			that's all it is, a button. Clicking on it does absolutely nothing. Remember that an HTML file is basically the web page version of a text 
@@ -211,7 +211,7 @@
 			name is in that text box, ready to be put into the "<code>aPromisedName</code>" slot.</p>
 			
 			<p>You might have been super excited and went ahead and opened up your html file, put in your summoner name, clicked dat button, but then saw this in your console: </p>
-			<img src="../stylesheets/notDefined.png" alt="follow along" style="width:75%;height:75%;">
+			<center><img src="../stylesheets/notDefined.png" alt="follow along" style="width:75%;height:75%;"></center>
 			
 			<p>So here what the HTML universe is trying to tell us is that <code>searchSummoner()</code> doesn't exist. Well, <strong>we</strong> know that 
 			<code>searchSummoner()</code>exists, because we wrote it ourselves! It's right there in that JS file we wrote! Oh wait...did we ever tell them that?</p>
@@ -240,14 +240,15 @@
 			<script src="https://gist.github.com/rostun/1587b64f48088eeba5c2.js"></script>
 			
 			<p>So everything is linked up, and now we might be able to see something output onto the console to prove that the user input is indeed being passed around 
-			successfully. </p>
-			<img src="../stylesheets/consoleLogSuccess.png" alt="follow along" style="width:75%;height:75%;">
+			successfully. <strong>Note that the format the API expects is the lowercase and no spaces version of your summoner name. We will learn how to deal
+			with other version of your summoner name later on.</strong></p>
+			<center><img src="../stylesheets/consoleLogSuccess.png" alt="follow along" style="width:75%;height:75%;"></center>
 			
 			<p>Great, we now have a summoner name to give to the Summoner Look Up API!</p>
 			
 		</div>		
 		<div class = "wrapper">
-			<h3>8 Calling Riot's API</h3>
+			<h3>8 Calling Riot's API and Object Oriented Design</h3>
 			
 			<p>It might seem like a long time since we tested our API key, but let's try to pick up where we left off and carry out that call we made over to this
 			setting. To do that, we need to send an HTTP request, like we did when we popped in the request into our browser to test our API key. To accomplish
@@ -258,8 +259,18 @@
 				<li>Send the request</li>
 				<li>Do something with what we got back</li>
 			</ul>
+			<p>This is probably an appropriate time to talk about the concept of an <strong>Object</strong> and <strong>Object Oriented Design</strong>. This is all purely 
+			conceptual. You can just think of an object as a normal object. Something that has attributes and we might be able to use it to do things. What we got back from 
+			the Summoner Look Up API is an object, because it holds data. You saw that within it it contained several bits of information. We can't really do anything with 
+			that kind of object except extract information from it. Now the XMLHttpRequest Object on the other hand, we can, as you will see soon.</p>
 			
-			<p>This is how we will execute these steps: </p>
+			<p>Object Oriented Design is when the design is centered around this organizing things into objects and using them as so. That's all, nothing complicated. </p>
+			
+			<p>Anyways, once we create this instance of XMLHttpReauest (which is an object) we can use it to do things. By definition, we can use it to exchange data with a server. 
+			What we are trying to accomplish is just that, we are going to use it to get what we got when we tested our API. If you need a refresher, this is our end game: </p>
+			<center><img src="../stylesheets/testAPISuccess.png" alt="follow along" style="width:100%;height:100%;"></center>
+			
+			<p>Let's translate the steps above to how we'll do them in Javascript</p>
 			
 			<h4>1. Create an instance of an API called XMLHttpRequest</h4>
 			<div class="info">
@@ -267,6 +278,9 @@
 						<strong><code>var req = new XMLHttpRequest();</code></strong><br>
 					</p>
 			</div>	
+			<p>Here we create an instance of <code>XMLHttpRequest()</code> and store it in a slot called <code>req</code>. This is our object that we're going to be able to
+			do things with.
+			
 			
 			<h4>2. Open a URL</h4>
 			<div class="info">
@@ -274,6 +288,42 @@
 						<strong><code>req.open("GET", "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + summonerName + "?api_key=your_api_key", true); </code><br></strong>
 					</p>
 			</div>	
+			<p>Does part of this line look familiar? Part of this looks a lot like the address we put in to test our Api Key. </p>
+			<center><img src="../stylesheets/testAPI.png" alt="follow along" style="width:100%;height:100%;"></center>
+			
+			<p>However, there is a difference between the request we want to send and the request we sent before. We want this request to take in the summoner name that 
+			the user input, so therefore, we need to break apart our request and add in that variable, hence we get that new format.</p>
+			
+			<p>So overall <code>req</code>, the object we're working with, has the ability to <code>open</code> something. It allows us to give three specifications to 
+			describe the thing we want to open. The second specification, you can probably already guess, is the URL. </p>
+			
+			<p> As for the other specifications, they're not too relevant, but you can certainly look them up to get a better understanding. </p>
+			<ul>
+				<li><a href="http://www.w3schools.com/tags/ref_httpmethods.asp">1st Specification: GET and POST</a></li>
+				<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests">3rd Specification: Synchronous vs Asynchronous</a></li>
+			</ul>
+			<p>The Quickie Explanation:</p>
+			
+			<h4>GET and POST</h4>
+			<p>When you make a GET request, you're basically saying "I am but a humble observer". You're only interested in receiving information. You want to find
+			out what games are going on, how many wards are being placed, what your summoner level is. When you submit your request to Riot, all they have to give
+			you is information that they already have. POST is the opposite. When you make a POST request you need the receiver to save or process your request, or 
+			maybe even create something new from it. Anyways, Rito don't got time for dat, so GET it is. </p>
+			<center><img src="../stylesheets/nobody.png" alt="follow along" style="width:40%;height:40%;"></center>
+			
+			<h4>Synchronous vs Asynchronous?</h4>
+			<p>The third specification does not matter in this case, but it would if we were doing multiple requests. What if we wanted to find out a bunch
+			of things out at once? Are we going to wait for one request to finish before starting the next? Imagine you are in a queue to get a movie ticket. 
+			You can't get one until everyone before you has gotten one. That is what <strong>synchronous</strong> means. Usually, we want the opposite, aka an 
+			Asynchronous request, which is what the <strong>true</strong> value means. <strong>Asynchronous Execution</strong> is like being at a restaurant
+			with many other people. Everyone's meals can be made at the same time, and the meals come out as they're done. We don't want one call holding up
+			another when we make requests. However, in some situations, it might be important for one call to be finished first. Then we might change this value.
+			But for now, it doens't matter. </p>
+			
+			<h4>Let's not lose the bigger picture</h4>
+			
+			<p>So unofficially, this line is equivalent to us putting the request in the browser. We're not doing anything with it yet, it's just there all nice
+			and ready for something to happen to it </p>
 			
 			<h4>3. Send the Request</h4>
 			<div class="info">
@@ -281,6 +331,8 @@
 						<code>req.send();</code><br>
 					</p>
 			</div>	
+			<p>Now THIS is when we press the enter key. If you were sending in a POST request you would have something included in the paranthesis, however, right
+			now you're just basically calling Riot, hoping they'll send you some info. </p>
 			
 			<h4>4. Do something with what we got back</h4>
 			<div class="info">
@@ -289,20 +341,207 @@
 					</p>
 			</div>	
 			
-			<p>XMLHttpRequest provides client funtionality for transfering data between a client and a server.</p>
+			<p>This is our final step. What <code>addEventListener</code> does is basically do something when an event happens. The event could be anything.
+			It could be a click, when something is moused over, anything. Well, we want to do something on <code>'load'</code>, aka when we get our info! 
+			Remember when we said that a function was like an action. We want the action to execute on <code>'load'</code>. Right now all that function is
+			doing is outputting <code>responseText</code> to the console, which is Riot's response to our request. </p>
+			<center><img src="../stylesheets/responseText.png" alt="follow along" style="width:100%;height:100%;"></center>
 			
-		
-			
+			<p>So now we've caught up to where we were before. We can get into the real meat, which is extracting what we want from this JSON object we got</p>
 		</div>
 		<div class = "wrapper">
-			<h3>9 JSON Objects and Object Oriented Design </h3>
-			<p>What are objects? Objects are just a way we describe things. For example, when we created an instance of the XMLHttpRequest API, we can call that an object.</p>
-			<p>According to the Riot Game's Developer getting started guide, it returns JSON data. In turn what this means is that you can use any programming 
-		language that has the ability to manipulate JSON objects. </p>
+			<h3>9 JSON Objects</h3>
+			<p>According to the Riot Game's Developer getting started guide, their API's return JSON data. This means that you can use any programming 
+			language that has the ability to manipulate JSON objects, not just Javascript, like we're doing here. </p>
+
+			<p>So when we say JSON Object, what does that mean. Well, JSON stands for <strong>JavaScript Object Notation</strong>. That is exactly what
+			it is. A type of notation. For JSON objects, everything is organized in pairs. Here is a most basic JSON Object: </p>
+			
+			<div class="info">
+					<p><strong>
+						<code>{"summonerLevel": 30} </code><br></strong>
+					</p>
+			</div>				
+			
+			<p>So you can see that <code>summonerLevel</code> corresponds with the number 30. The data on the left is called the <strong>key</strong> and every key 
+			has an associated <strong>value</strong>, which is the data that comes after the colon. Depending on the data type, you may or may not need quotes. So for 
+			numbers you don't, but for words you do. So here <code>summonerLevel</code> is the key and <code>30</code> is the value. If we want to add another paid,
+			we can! Just make sure all your pairs are separated by commas. </p>
+			<div class="info">
+					<p><strong>
+						<code>{"summonerLevel": 30, "summonername":"missPapaya"} </code><br></strong>
+					</p>
+			</div>	
+			
+			<p>But what about something more complicated, like the JSON object we received back from the API? Well, the same rule applies, everything is still in 
+			pairs! It's just the value happens to be a pair itself. Let's take a look at it below: </p>
+			<div class="info">
+					<p><strong>
+						<code>{"misspapaya": <br>
+								<span class = "tab"></span>{<br>
+								<span class = "tab"></span><span class = "tab"></span>"id":22977975,<br>
+								<span class = "tab"></span><span class = "tab"></span>"name":"missPapaya",<br>
+								<span class = "tab"></span><span class = "tab"></span>"profileIconId":983,<br>
+								<span class = "tab"></span><span class = "tab"></span>"summonerLevel":30,<br>
+								<span class = "tab"></span><span class = "tab"></span>"revisionDate":1451798706000<br>
+								<span class = "tab"></span>}<br>
+							} </code><br></strong>
+					</p>
+			</div>
+			
+			<p>So here we have one pair, <code>{"missPapaya":{stuff}}</code>. That second part that we called <code>stuff</code> is consisted of multiple pairs. 
+			Conceptually, this means that all these pairs are associated with <code>"missPapaya"</code>. We could even add in more summoners with their own pairs,
+			but, afterall we only asked for one summoner. </p>
+			
+			<p>So how do we take this JSON object and break it down in a way where we separate out all the elements in a usable form? As far as the machine knows,
+			this is just a jumble of words. We need to <strong>parse</strong> the data once we receive it! Add this bolded line to your js function. </p>
+			<div class="info">
+					<p>
+						<code>	req.addEventListener('load', function(){ <br>
+										<span class = "tab"></span>console.log(req.responseText); <br>
+										<strong><span class = "tab"></span>var response = JSON.parse(req.responseText); <br></strong>
+										<strong><span class = "tab"></span>console.log(response);<br></strong>
+									});	
+						</code><br>
+					</p>
+			</div>				
+			
+			<p>So like we said, parse whatever Riot gave us, and then see what we get! You should get back an actual Object with all the elements correctly
+			organized, nested, and accessible if you expand response.</p>
+			<center><img src="../stylesheets/object.png" alt="follow along" style="width:100%;height:100%;"></center>
+		</div>
+		<div class = "wrapper">
+			<h3>10 Access JSON Objects</h3>
+			<p>There are actually two ways to access JSON Objects. One is with dot notation, and another is with bracket notation. Which one should we use?
+			Test these two bolded lines out. </p>
+			<div class="info">
+					<p>
+						<code>	req.addEventListener('load', function(){ <br>
+										<span class = "tab"></span>console.log(req.responseText); <br>
+										<span class = "tab"></span>var response = JSON.parse(req.responseText); <br>
+										<span class = "tab"></span>console.log(response);<br>
+										<strong><span class = "tab"></span>console.log(response.misspapaya.id);<br></strong>
+										<strong><span class = "tab"></span>console.log(response["misspapaya"]["id"]);<br></strong>
+									});	
+						</code><br>
+					</p>
+			</div><br>
+			<p>You should see something like this in your console</p>
+			<center><img src="../stylesheets/nodifference.png" alt="follow along" style="width:100%;height:100%;"></center>
+			
+			<p>So as you can see, there is no difference. The only difference is in the notation. <code>response.misspapaya.id<code> doesn't use quotes on the key, and 
+			<code>response["misspapaya"]["id"]</code> uses quotes on the key. However, remember the only form of our summoner name we have is in a container called 
+			<code>aPromisedName</code>. We'll talk about how to deal with that later. </p>
+			
+			<p>So even though things are appearing in the console log, they're not appearing on our HTML page. How did we do this last time? Remember
+			<code>document.getElementById().value</code>? We used up to open a portal to that text the user inputted. This time we want to open up a 
+			portal again, put place a value in the text input. So instead of grabbing it with <code>return</code> we want to set it with <code>
+			response.misspapaya.id</code> or <code>response["misspapaya"]["id"]</code>. But what goes in the paranthesis? Not <code>aPromisedName</code>,
+			we need more slots! Let's do that first. Add the bolded portions to your HTML file: </p>
+			<div class="info">
+					<p>
+						<code>&lth3&gtBasic Summoner Object&lt/h3&gt<br>
+							&ltul style="list-style-type:none"&gt<br>
+								<span class = "tab"></span>&ltli&gt&ltstrong&gt Name: &lt/strong&gt <strong>&ltspan id="name"&gt&lt/span&gt</strong>&lt/li&gt<br>
+								<span class = "tab"></span>&ltli&gt&ltstrong&gt ID: &lt/strong&gt <strong>&ltspan id="id"&gt&lt/span&gt</strong>&lt/li&gt<br>
+								<span class = "tab"></span>&ltli&gt&ltstrong&gt Level: &lt/strong&gt <strong>&ltspan id="summonerLevel"&gt&lt/span&gt </strong>&lt/li&gt<br>
+								<span class = "tab"></span>&ltli&gt&ltstrong&gt Profile Icon Id: &lt/strong&gt <br>
+								<strong><span class = "tab"></span>&ltspan id="profileIconId"&gt&lt/span&gt</strong>&lt/li&gt<br>
+								<span class = "tab"></span>&ltli&gt&ltstrong&gt Revision Date: &lt/strong&gt <br>
+								<strong><span class = "tab"></span>&ltspan id="revisionDate"&gt&lt/span&gt </strong>&lt/li&gt<br>
+							&lt/ul&gt
+						</code><br>
+					</p>
+			</div><br>
+			
+			<p>So now we have 5 things to fill: <code>name, id, summonerLevel, profileIconId, and revisionDate</code>. Great, now let's fill in those values in our JS file:</p> 
+			<div class="info">
+					<p>
+						<code>
+						<span class = "tab"></span>console.log(response.misspapaya.id);
+						<strong><span class = "tab"></span>document.getElementById('id').textContent = response.misspapaya.id;
+						<span class = "tab"></span>document.getElementById('name').textContent<br> 
+						<span class = "tab"></span>= response.misspapaya.name;
+						<span class = "tab"></span>document.getElementById('profileIconId').textContent<br> 
+						<span class = "tab"></span>= response.misspapaya.profileIconId;
+						<span class = "tab"></span>document.getElementById('summonerLevel').textContent<br> 
+						<span class = "tab"></span>= response.misspapaya.summonerLevel;
+						<span class = "tab"></span>document.getElementById('revisionDate').textContent<br> 
+						<span class = "tab"></span>= response.misspapaya.revisionDate;<br></strong>
+						});	</code><br>
+					</p>
+			</div><br>			
+			
+			<p>Now if you run your page, all those elements will appear on your html page! Woohoo it looks like we are done! Or are we...</p>
+			<center><img src="../stylesheets/working.png" alt="follow along" style="width:60%;height:60%;"></center>
+			
+			<p>If you've tried to put in any other name in the text input besides your summoner name, you'll soon realize that, while we passed in <strong>our</strong> 
+			summoner name, we didn't actually pass it in through our input text slot called <code>aPromisedName</code>. That's because we directly wrote in our summoner 
+			name when extracting it from the object, which is not what happens IRL. How can we fix this? </p>
+			</div>
+			<div class = "wrapper">
+				<h3>12 Accessing JSON Objects with a Variable</h3>
+				<p>The first thing you probably did was straight substitution, like seen below:</p>
+				<div class="info">
+						<p>
+							<code>	req.addEventListener('load', function(){ <br>
+											<span class = "tab"></span>console.log(req.responseText); <br>
+											<span class = "tab"></span>var response = JSON.parse(req.responseText); <br>
+											<span class = "tab"></span>console.log(response);<br>
+											<strong><span class = "tab"></span>console.log(response.aPromisedName.id);<br></strong>
+											<strong><span class = "tab"></span>console.log(response["aPromisedName"]["id"]);<br></strong>
+										});	
+							</code><br>
+						</p>
+				</div>
+				<p>However, immediately upon refreshing the page you get an error on line 20</p>
+				<center><img src="../stylesheets/unexpectedString.png" alt="follow along" style="width:60%;height:60%;"></center>
+				
+				<p>Well then that tells us that <code>response.aPromisedName.id</code> isn't going to work. This is because they are searching, not for what's in our <code>
+				aPromisedName</code> slot, but our actual slot <strong>name</strong>. But wait! Our <code>console.log(response["aPromisedName"]["id"])</code> didn't give us
+				an error! Maybe we can use that! Unfortunately, even if that made it a bit farther, if we delete the dot notation console.log and input our summoner name 
+				and try to request the information, we get this:
+				<center><img src="../stylesheets/undefinedString.png" alt="follow along" style="width:60%;height:60%;"></center>
+				<p>which is basically another way of saying the same thing as before. So it seems like we're really in a pickle here. We need to find a way to pass what is in
+				<strong><code>aPromisedName</code></strong>, not the actual name of our slot. 
+				
+				<p>In the end, what we need is a combination of the dot and bracket notation. The bracket notation can recognize our slot <code>aPromisedName</code> if we feed 
+				it in by a different format; the one without the quotes. When we do this, it doesn't intepret the name of the variable, but rather it goes a level deeper and 
+				gets the name that is located in the slot. Try this out: </p>
+				<div class="info">
+						<p>
+							<code>	req.addEventListener('load', function(){ <br>
+											<span class = "tab"></span>console.log(req.responseText); <br>
+											<span class = "tab"></span>var response = JSON.parse(req.responseText); <br>
+											<span class = "tab"></span>console.log(response);<br>
+											<strong><span class = "tab"></span>console.log(response[aPromisedName]["id"]);<br></strong>
+										});	
+							</code><br>
+						</p>
+				</div>
+				
+				<p>With this, we get the id of any lowercase summoner name! We can change our previous lines to this new and better format: </p>
+				<div class="info">
+					<p>
+						<code>
+						<span class = "tab"></span>console.log(response.misspapaya.id);
+						<strong><span class = "tab"></span>document.getElementById('id').textContent = response[aPromisedName]["id"];
+						<span class = "tab"></span>document.getElementById('name').textContent<br> 
+						<span class = "tab"></span>= response[aPromisedName]["name"];
+						<span class = "tab"></span>document.getElementById('profileIconId').textContent<br> 
+						<span class = "tab"></span>= response[aPromisedName]["profileIconId"];
+						<span class = "tab"></span>document.getElementById('summonerLevel').textContent<br> 
+						<span class = "tab"></span>= response[aPromisedName]["summonerLevel"];
+						<span class = "tab"></span>document.getElementById('revisionDate').textContent<br> 
+						<span class = "tab"></span>= response[aPromisedName]["revisionDate"];<br></strong>
+						});	</code><br>
+					</p>
+			</div><br>	
+			</div>	
 		</div>
 		<div class = "wrapper">
 			<h3>10 The Riot API Universe</h3>
-			<img src="../stylesheets/apiKeys.png" alt="follow along" style="width:100%;height:100%;">
+			<center><img src="../stylesheets/apiKeys.png" alt="follow along" style="width:100%;height:100%;"></center>
 		</div>
 		<div>
 			cupcake bullet by blueberryjoe.deviantart.com

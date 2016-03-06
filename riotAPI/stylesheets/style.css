@@ -17,6 +17,10 @@ body {
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
 }
 
+span.tab{
+    padding: 0 1em; /* Or desired space*/
+}
+
 .wrapper {
 	text-align: left;
 	margin: 0 auto;
