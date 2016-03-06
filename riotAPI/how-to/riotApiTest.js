@@ -19,7 +19,7 @@ console.log(findValue(response, stringSummoner));*/
 
 function searchSummoner(){
 	function getSummoner(){ //get user input
-		return document.getElementById('summonerName').value;
+		return document.getElementById('aPromisedName').value;
 	}
 	
 	var summonerName = getSummoner(); //store user input
