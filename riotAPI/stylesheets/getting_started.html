@@ -27,10 +27,10 @@
 		<div class = "wrapper" >
 			<h3>1 Guide Assumptions</h3>
 			
-			<p>This guide is designed for mostly for beginners who are looking for a way to get started 
-			using Riot's API, but it can also be useful for someone curious about how to use Javascript 
-			to implement the process. It does not assume that you have any prior experience working with API's, 
-			but it will help. There are a few things that you need to follow along with the examples in this guide:</p>
+			<p>This guide is designed for mostly for beginners who are looking for a way to get started using Riot's API, but it can also 
+			be useful for someone curious about how to use Javascript to implement the process. <strong>Although what we end up with will 
+			be very bare bones; the minimum needed for demonstration purposes. </strong> It does not assume that you have any prior experience 
+			working with API's, but it will help. There are a few things that you need to follow along with the examples in this guide:</p>
 			
 				<ul>
 					<li>A <a href="http://www.leagueoflegends.com">League of Legends</a> account.</li>
@@ -76,8 +76,8 @@
 			<p>If you play or have played League of Legends before, you probably already have a League of Legends account. 
 			So to get the API key, all you need to do is navigate to the <a href="https://developer.riotgames.com/sign-in">Riot Games Developers</a> 
 			website and sign in with your summoner name and password. After you've signed up, you will be able to see your API
-			key on the dashboard. <strong> Copy and paste it in a file somewhere. </strong> You can always go back to your dashboard to retrieve it again
-			but it's good to get into the habit of making sure you have a copy of your keys floating around somewhere (somewhere safe). 
+			key on the dashboard. <strong> Copy and paste it in a file somewhere. </strong> You can always go back to your dashboard to retrieve 
+			it again but it's good to get into the habit of making sure you have a copy of your keys floating around somewhere (somewhere safe). 
 			
 			<p>You'll see that there is a short <a href="https://developer.riotgames.com/docs/getting-started">getting started</a> orientation page 
 			that you can read. </p>
@@ -85,17 +85,18 @@
 			<img src="../stylesheets/gettingStarted.png" alt="getting started" style="width:100%;height:100%;">
 			
 			<p>There are several different versions of keys, the one you get by default has the smallest rate limit. Unless you're trying to 
-			make a site like op.gg or have big dreams, you'll be quite okay with the key you have now. They also mention that you should be familiar with 
-			JSON objects and Object Oriented programming before getting started. Don't worry brah, this guide has got yah covered on dat! </p>
+			make a site like op.gg or have big dreams, you'll be quite okay with the key you have now. They also mention that you should be familiar 
+			with JSON objects and Object Oriented programming before getting started. Don't worry brah, this guide has got yah covered on dat! </p>
 		</div>
 		<div class = "wrapper">
 			<h3>4 Test your API key</h3>
-			<p>Before we get started, we want to make sure that your API key actually works. Nothing is more lame than spending an inordinate amount of time
-			trying to figure out what is wrong with your program and then realizing that you copied your API key wrong or something. So open up your browser 
-			and test the Summoner Look Up request! </p>
+			<p>Before we get started, we want to make sure that your API key actually works. Nothing is more lame than spending an inordinate amount 
+			of time trying to figure out what is wrong with your program and then realizing that you copied your API key wrong or something. So open 
+			up your browser and test the Summoner Look Up request! </p>
 			
-			<p>To test the request, just enter in the request like how you would enter a web page in, as seen below. (Remember to replace <code>&ltkey&gt</code> with 
-			<strong>your API Key</strong>). If you want to see your details, replace <code>riotSchmick</code> with your summoner name</p>
+			<p>To test the request, just enter in the request like how you would enter a web page in, as seen below. (Remember to replace 
+			<code>&ltkey&gt</code> with <strong>your API Key</strong>). If you want to see your details, replace <code>riotSchmick</code> with your 
+			summoner name</p>
 			
 			<img src="../stylesheets/testAPI.png" alt="getting started" style="width:100%;height:100%;">
 			
@@ -103,34 +104,35 @@
 			
 			<img src="../stylesheets/testAPISuccess.png" alt="getting started" style="width:100%;height:100%;">
 			
-			<p>You can probably already tell how the information is organized for this request. You see your summoner name and details about your account in
-			quotes, and that this information is organized in a certain way. You can only assume this form is in <strong>JSON</strong>, because that's what rito said!
-			But if you're a beginner you might be asking what even is JSON? What's an Object? How do I extract this information that I got from this API to make 
-			something that users can interact with? Well, no better way to learn than to get this process started! </p>
+			<p>You can probably already tell how the information is organized for this request. You see your summoner name and details about your account 
+			in quotes, and that this information is organized in a certain way. You can only assume this form is in <strong>JSON</strong>, because that's 
+			what rito said! But if you're a beginner you might be asking what even is JSON? What's an Object? How do I extract this information that 
+			I got from this API to make something that users can interact with? Well, no better way to learn than to get this process started! </p>
 		</div>
 		<div class = "wrapper">
 			<h3>5 HTML: What information from the API to Display?</h3>
 			<p>To follow along with this guide, you'll need set up some files to work with. Let's first start with the HTML file. 
-			This is a good time to start thinking of what you want to show in your web page. For the sake of demonstration, we'll be showing every element
-			that the Summoner Look Up Object has to give. </p>
+			This is a good time to start thinking of what you want to show in your web page. For the sake of demonstration, we'll be showing every 
+			element that the Summoner Look Up Object has to give. </p>
 			
 			<p>So create a text file and rename it to riotApiTest with a .html extension instead of a .txt extension (riotApiTest.html) and fill it with this: </p>
 				<script src="https://gist.github.com/rostun/87a3665570a8044a1b22.js"></script>
 			
 			<p>If you're a beginner, you must be thinking, what did I just do? Well, if you go to the folder where this file is and double-click on it, 
-			it should pop up in your web browser as something that looks like this:</p>
+			or right click and open it, it should pop up in your web browser as something that looks like this (folllowAlong.html could be any html file):</p>
 			<img src="../stylesheets/followAlong.png" alt="follow along" style="width:75%;height:75%;">
 			
 			<p>An HTML file is basically the web page version of a text file and comes with it's own rules for implementation. 
 			You might notice that your html file doesn't look like the web page you just opened, although you can see the contents distributed throughout
 			the html file with the words enclosed with "<" and ">" characters not appearing in the browser page. Those are called <strong> HTML Tags </strong>. 
-			HTML tags are the hidden keywords within a web page that define how the browser must format and display the content. We won't go into too much detail, 
-			but you can easily look up or even deduce what all the tags do and mean. For example the words enclosed by the <code>&lttitle&gt</code> and <code>&lt/title&gt</code>
-			tags appear as the description in the web tab. </p>
+			HTML tags are the hidden keywords within a web page that define how the browser must format and display the content. We won't go into too much 
+			detail, but you can easily look up or even deduce what all the tags do and mean. For example the words enclosed by the <code>&lttitle&gt</code> 
+			and <code>&lt/title&gt</code> tags appear as the description in the web tab. </p>
 			
-			<p>One special tag that foreshadows what we'll be doing next is the <code>&input type="text"/&gt</code> tag. This actually enables a place for text input 
-			(you can try typing in it). You may have already typed your summoner name and then halfway through realized that there's no way to submit it.
-			Thus, let's add an input type called <code>button</code> and label it <code>Search Summoner</code>. Add the new input type into your html file as shown below: </p>
+			<p>One special tag that foreshadows what we'll be doing next is the <code>&input type="text"/&gt</code> tag. This actually enables a place 
+			for text input (you can try typing in it). You may have already typed your summoner name and then halfway through realized that there's no 
+			way to submit it. Thus, let's add an input type called <code>button</code> and label it <code>Search Summoner</code>. Add the new input type 
+			into your html file as shown below: </p>
 				<div class="info">
 						</code>&ltp&gt&ltinput type="text"/&gt&lt/p&gt</code><br>
 						</code><strong>&ltinput type="button" value="Search Summoner"/&gt</code></strong><br>
@@ -142,22 +144,25 @@
 			<img src="../stylesheets/button.png" alt="follow along" style="width:50%;height:50%;">
 			
 			<p>But again, it probably didn't take you long to figure out that 
-			that's all it is, a button. Clicking on it does absolutely nothing. Remember that an HTML file is basically the web page version of a text file. So while we have
-			want we want visually there's no functionality. Well Javascript can help us with that. Onward bb! </p> 
+			that's all it is, a button. Clicking on it does absolutely nothing. Remember that an HTML file is basically the web page version of a text 
+			file. So while we have want we want visually there's no functionality. Well Javascript can help us with that. Onward bb! </p> 
 		</div>
 		<div class = "wrapper">
 			<h3>6 Getting Information you want from the API: Javascript </h3>
-			<p>So create a text file and rename it to riotApiTest with, but this time with a .js extension instead of an .html extension (riotApiTest.js) and fill it with this: </p>
+			<p>So create a text file and rename it to riotApiTest with, but this time with a .js extension instead of an .html extension (riotApiTest.js) 
+			and fill it with this: </p>
 				<script src="https://gist.github.com/rostun/1587b64f48088eeba5c2.js"></script>
 			
-			<p>So let's look at what we have here. Essentially, this entire thing is a function called <code>searchSummoner</code>. Functions are basically like actions, 
-			they do things. The names we give functions usually represent what we want them to do. Remember our button? When we click it, we want something to happen. 
-			We want Riot to look up a summoner name and give us some information. So <code>searchSummoner()</code> seems like an appropriate name. </p>
+			<p>So let's look at what we have here. Essentially, this entire thing is a function called <code>searchSummoner</code>. Functions are basically 
+			like actions, they do things. The names we give functions usually represent what we want them to do. Remember our button? When we click it, 
+			we want something to happen. We want Riot to look up a summoner name and give us some information. So <code>searchSummoner()</code> seems like 
+			an appropriate name. </p>
 			
-			<p>However, you can't ask riot to search for a summoner name without giving them that name. That means another action, or function, is needed. So while we ask
-			Riot to search a summoner for us, we have to somehow get them the summoner's name the user inputs. So calling the funciton <code>getSummoner()</code> seems like a pretty 
-			good name for that action. We don't actually know what that name is YET, but we can do this thing where we allocate a slot for it, which will allow us to fill it in later. 
-			This is called declaring a variable. In this case our variable is called <code>aPromisedName</code>. Let's look at what is inside this mini <code>getSummoner()</code> action. </p>
+			<p>However, you can't ask riot to search for a summoner name without giving them that name. That means another action, or function, is needed. 
+			So while we ask Riot to search a summoner for us, we have to somehow get them the summoner's name the user inputs. So calling the funciton 
+			<code>getSummoner()</code> seems like a pretty good name for that action. We don't actually know what that name is YET, but we can do this 
+			thing where we allocate a slot for it, which will allow us to fill it in later. This is called declaring a variable. In this case our variable 
+			is called <code>aPromisedName</code>. Let's look at what is inside this mini <code>getSummoner()</code> action. </p>
 			<div class="info">
 					<p>
 						<strong><code>return</code></strong> <br>
@@ -165,40 +170,139 @@
 					</p>
 			</div>		
 			
-			<p><strong><code>document.getElementById('aPromisedName').value</code>:</strong> This is basically going into the HTML document we created earlier, taking 
-			whatever summoner name the user gives us, and putting it into the slot <code>aPromisedName</code> we made earlier.</p>
+			<p><strong><code>document.getElementById('aPromisedName').value</code>:</strong> This is basically going into the HTML document we created earlier, 
+			taking whatever summoner name the user gives us, and putting it into the slot <code>aPromisedName</code> we made earlier.</p>
 			
-			<p><strong><code>return</code>:</strong> So every function can return something. A function is like a factory. If you start <code>getSummoner()</code>, it will 
-			execute whatever directions it is given and then at the end, hopefully, have something it produces. In this case, as you can see in line 5, we execute
-			<code>getSummoner()</code> once, and store whatever it produces into a slot called <strong><code>summonerName</code></strong>. 
+			<p><strong><code>return</code>:</strong> So every function can return something. A function is like a factory. If you start <code>getSummoner()</code>, 
+			it will execute whatever directions it is given and then at the end, hopefully, have something it produces. In this case, as you can see in line 5, 
+			we execute <code>getSummoner()</code> once, and store whatever it produces into a slot called <strong><code>summonerName</code></strong>. 
 			
-			<p>So, in this case, we're hoping the <code>getSummoner()</code> factory gives us a summoner name! There is a way to see what is in our slots. We can use the 
-			<code>console.log()</code> command to output to the console whatever is contained in the parenthesis. In our case, we want to see what's in <code>summonerName</code> to 
-			make sure we've got what we want. </p>
+			<p>So, in this case, we're hoping the <code>getSummoner()</code> factory gives us a summoner name! There is a way to see what is in our slots. We can 
+			use the <code>console.log()</code> command to output to the console whatever is contained in the parenthesis. In our case, we want to see what's in 
+			<code>summonerName</code> to make sure we've got what we want. </p>
 			
-			<p>To access the console from your browser, right click on your page and click on inspect. This will bring up a window where you can see what your web page is made out of.
-			You'll probably be in the Elements tab, where you can see your HTML source code, if you switch to the <strong>Console</strong> tab you will see the console!</p>
+			<p>To access the console from your browser, right click on your page and click on inspect. This will bring up a window where you can see what your 
+			web page is made out of. You'll probably be in the Elements tab, where you can see your HTML source code, if you switch to the <strong>Console</strong> 
+			tab you will see the console!</p>
 			
-			<p>Unfortunately, unlike HTML, we can't just open up a .js file in browser and see what's up. So to test our .js file we need to do it through our HTML file. Let's add
-			these functionalities to our two inputs from before, the text block and the button!</p> 
+			<p>Unfortunately, unlike HTML, we can't just open up a .js file in browser and see what's up. So to test our .js file we need to do it through our HTML 
+			file. Let's add these functionalities to our two inputs from before, the text block and the button!</p> 
 		</div>	
 		<div class = "wrapper">
 			<h3>7 Add Functionality to your Webpage </h3>
-			<p>In layman's terms, you can think of an API as an agreement between two people stating </p>
+			<p> So we need to add two things to our HTML file to link it up to those functions we made in the JS file. One for the text input and one for the button input. </p>
+			
+			<p> Add the bolded portion to the lines in your HTML file </p>
+			<div class="info">
+					<p>
+						<code>Enter Summoner Name: &ltinput type="text" <strong>id="aPromisedName"</strong>/&gt</code>
+					</p>
+			</div><br>				
+			<div class="info">
+					<p>
+						<code>&ltinput type="button" value="Search Summoner" <strong>onclick="searchSummoner()"</strong>/&gt</code>
+					</p>
+			</div>					
+			
+			<p>So remember that <code>getSummoner()</code> is a function whose action is to get the <strong>future</strong> user input, and we set up a slot for it, called
+			<code>aPromisedName</code>. What do we want to put in that slot? Whatever the user inputs into this text box. Thus one connection is set up! </p>
+			
+			<p>All that is left is to connect the button to the <code>searchSummoner()</code> action. Once the user clicks this button, we're assuming that their summoner
+			name is in that text box, ready to be put into the "<code>aPromisedName</code>" slot.</p>
+			
+			<p>You might have been super excited and went ahead and opened up your html file, put in your summoner name, clicked dat button, but then saw this in your console: </p>
+			<img src="../stylesheets/notDefined.png" alt="follow along" style="width:75%;height:75%;">
+			
+			<p>So here what the HTML universe is trying to tell us is that <code>searchSummoner()</code> doesn't exist. Well, <strong>we</strong> know that 
+			<code>searchSummoner()</code>exists, because we wrote it ourselves! It's right there in that JS file we wrote! Oh wait...did we ever tell them that?</p>
+			
+			<p>Oops! We never did. Well, let's tell them. Giving files access to other files is sort of like putting down an x mark on a treasure map. You just give a name 
+			and mark the location somewhere in your file. In our case, we don't need to give a location because our JS file is in the same folder as our HTML file
+			(<strong>if not, do that now</strong>). That is sort of like it being within visual distance. So add the bolded line in your HTML file.</p>
+			<div class="info">
+					<p>
+						<code>&lt/div&gt</code><br>
+						<strong><code>&ltscript src="riotApiTest.js"&gt&lt/script&gt</code></strong>
+					</p>
+			</div>
+			
+			<p>If our JS file wasn't in the same folder, say it was somewhere else in our computer, that means we would have to be more specific and add some more hints on 
+			where it's located, something like this: </p>
+			<div class="info">
+					<p>
+						<code>&lt/div&gt</code><br>
+						<strong><code>&ltscript src="../someFolder/riotApiTest.js"&gt&lt/script&gt</code></strong>
+					</p>
+			</div>			
+			
+			<p>Finally, let's see what we have so far side by side. </p>
+			<script src="https://gist.github.com/rostun/030d95a6e32d0146ab10.js"></script>
+			<script src="https://gist.github.com/rostun/1587b64f48088eeba5c2.js"></script>
+			
+			<p>So everything is linked up, and now we might be able to see something output onto the console to prove that the user input is indeed being passed around 
+			successfully. </p>
+			<img src="../stylesheets/consoleLogSuccess.png" alt="follow along" style="width:75%;height:75%;">
+			
+			<p>Great, we now have a summoner name to give to the Summoner Look Up API!</p>
+			
 		</div>		
 		<div class = "wrapper">
-			<h3>8 Web Calls </h3>
-			<p>In layman's terms, you can think of an API as an agreement between two people stating </p>
+			<h3>8 Calling Riot's API</h3>
+			
+			<p>It might seem like a long time since we tested our API key, but let's try to pick up where we left off and carry out that call we made over to this
+			setting. To do that, we need to send an HTTP request, like we did when we popped in the request into our browser to test our API key. To accomplish
+			that through Javscript there are four basic steps. We actually have to use another API to do this!</p>
+			<ul id = "navlist">
+				<li>Create an instance of an API called XMLHttpRequest.</li>
+				<li>Open a URL</li>
+				<li>Send the request</li>
+				<li>Do something with what we got back</li>
+			</ul>
+			
+			<p>This is how we will execute these steps: </p>
+			
+			<h4>1. Create an instance of an API called XMLHttpRequest</h4>
+			<div class="info">
+					<p>
+						<strong><code>var req = new XMLHttpRequest();</code></strong><br>
+					</p>
+			</div>	
+			
+			<h4>2. Open a URL</h4>
+			<div class="info">
+					<p>
+						<strong><code>req.open("GET", "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + summonerName + "?api_key=your_api_key", true); </code><br></strong>
+					</p>
+			</div>	
+			
+			<h4>3. Send the Request</h4>
+			<div class="info">
+					<p>
+						<code>req.send();</code><br>
+					</p>
+			</div>	
+			
+			<h4>4. Do something with what we got back</h4>
+			<div class="info">
+					<p>
+						<code>req.addEventListener('load', function(){console.log(req.responseText);}); </code><br>
+					</p>
+			</div>	
+			
+			<p>XMLHttpRequest provides client funtionality for transfering data between a client and a server.</p>
+			
+		
+			
 		</div>
 		<div class = "wrapper">
 			<h3>9 JSON Objects and Object Oriented Design </h3>
+			<p>What are objects? Objects are just a way we describe things. For example, when we created an instance of the XMLHttpRequest API, we can call that an object.</p>
 			<p>According to the Riot Game's Developer getting started guide, it returns JSON data. In turn what this means is that you can use any programming 
 		language that has the ability to manipulate JSON objects. </p>
 		</div>
 		<div class = "wrapper">
 			<h3>10 The Riot API Universe</h3>
-			<p>According to the Riot Game's Developer getting started guide, it returns JSON data. In turn what this means is that you can use any programming 
-		language that has the ability to manipulate JSON objects. </p>
+			<img src="../stylesheets/apiKeys.png" alt="follow along" style="width:100%;height:100%;">
 		</div>
 		<div>
 			cupcake bullet by blueberryjoe.deviantart.com
