@@ -11,7 +11,24 @@
 				</ul>
 			</div>
 		</div>
-		<div class = "wrapper" >
+		<div class = "wrapper">
+			<h3>Guide Outline</h3>
+			&nbsp&nbsp1<span class = "tab"><a href="#1" id="back">Guide Assumptions</a><br>
+			&nbsp&nbsp2<span class = "tab"><a href="#2" id="back">What is an API?</a><br>
+			&nbsp&nbsp3<span class = "tab"><a href="#3" id="back">Lets get Started: The API Key</a><br>
+			&nbsp&nbsp4<span class = "tab"><a href="#4" id="back">Test your API key</a><br>
+			&nbsp&nbsp5<span class = "tab"><a href="#5" id="back">HTML: What information from the API to Display?</a><br>
+			&nbsp&nbsp6<span class = "tab"><a href="#6" id="back">Getting Information you want from the API: Javascript</a><br>
+			&nbsp&nbsp7<span class = "tab"><a href="#7" id="back">Add Functionality to your Webpage</a><br>
+			&nbsp&nbsp8<span class = "tab"><a href="#8" id="back">Calling Riot's API and Object Oriented Design</a><br>
+			&nbsp&nbsp9<span class = "tab"><a href="#9" id="back">JSON Objects</a><br>
+			10<span class = "tab"><a href="#10" id="back">Accessing JSON Objects</a><br>
+		    11<span class = "tab"><a href="#11" id="back">Accessing JSON Objects with a Variable</a><br>
+		    12<span class = "tab"><a href="#12" id="back">Summoner Name Creation Rules</a><br>
+		    13<span class = "tab"><a href="#13" id="back">The Riot API Universe and JSON Arrays</a><br>
+		    14<span class = "tab"><a href="#14" id="back">The Pep Talk</a><br>
+		</div>
+		<div id = "1" onclick="window.location.hash='back'; " class = "wrapper" >
 			<h3>1 Guide Assumptions</h3>
 			
 			<p>This guide is designed for mostly for beginners who are looking for a way to get started using Riot's API, but it can also 
@@ -43,7 +60,7 @@
 			and responses. What it means to the average person is just basically opening up your html file in browser and, theoretically, 
 			everything should work. If or how you want to host it is totally up to you! Let's get started! </p>	
 		</div>
-		<div class = "wrapper">
+		<div id = "2" onclick="window.location.hash='back'; " class = "wrapper">
 			<h3>2 What is an API? </h3>
 			<p>In layman's terms, you can think of an API as an agreement between two people stating </p>
 				<div class="info">
@@ -54,7 +71,7 @@
 			how to comprehend this alternative "user interface" that software use to interact with other software. This shorthand way 
 			to do things like checking the current weather or adding an event to your calendar is what an API provides.</p>
 		</div>
-		<div class = "wrapper">
+		<div id = "3" onclick="window.location.hash='back'; " class = "wrapper">
 			<h3>3 Lets get Started: The API Key </h3>
 			
 			<p>You can think of the <strong>API key</strong> as a password for you to gain access to information. Every Riot Games API request 
@@ -75,7 +92,7 @@
 			make a site like op.gg or have big dreams, you'll be quite okay with the key you have now. They also mention that you should be familiar 
 			with JSON objects and Object Oriented programming before getting started. Don't worry brah, this guide has got yah covered on dat! </p>
 		</div>
-		<div class = "wrapper">
+		<div id = "4" onclick="window.location.hash='back'; " class = "wrapper">
 			<h3>4 Test your API key</h3>
 			<p>Before we get started, we want to make sure that your API key actually works. Nothing is more lame than spending an inordinate amount 
 			of time trying to figure out what is wrong with your program and then realizing that you copied your API key wrong or something. So open 
@@ -96,7 +113,7 @@
 			what rito said! But if you're a beginner you might be asking what even is JSON? What's an Object? How do I extract this information that 
 			I got from this API to make something that users can interact with? Well, no better way to learn than to get this process started! </p>
 		</div>
-		<div class = "wrapper">
+		<div id = "5" onclick="window.location.hash='back'; " class = "wrapper">
 			<h3>5 HTML: What information from the API to Display?</h3>
 			<p>To follow along with this guide, you'll need set up some files to work with. Let's first start with the HTML file. 
 			This is a good time to start thinking of what you want to show in your web page. For the sake of demonstration, we'll be showing every 
@@ -134,7 +151,7 @@
 			that's all it is, a button. Clicking on it does absolutely nothing. Remember that an HTML file is basically the web page version of a text 
 			file. So while we have want we want visually there's no functionality. Well Javascript can help us with that. Onward bb! </p> 
 		</div>
-		<div class = "wrapper">
+		<div id = "6" onclick="window.location.hash='back'; " class = "wrapper">
 			<h3>6 Getting Information you want from the API: Javascript </h3>
 			<p>So create a text file and rename it to riotApiTest with, but this time with a .js extension instead of an .html extension (riotApiTest.js) 
 			and fill it with this: </p>
@@ -175,7 +192,7 @@
 			<p>Unfortunately, unlike HTML, we can't just open up a .js file in browser and see what's up. So to test our .js file we need to do it through our HTML 
 			file. Let's add these functionalities to our two inputs from before, the text block and the button!</p> 
 		</div>	
-		<div class = "wrapper">
+		<div id = "7" onclick="window.location.hash='back'; " class = "wrapper">
 			<h3>7 Add Functionality to your Webpage </h3>
 			<p> So we need to add two things to our HTML file to link it up to those functions we made in the JS file. One for the text input and one for the button input. </p>
 			
@@ -234,7 +251,7 @@
 			<p>Great, we now have a summoner name to give to the Summoner Look Up API!</p>
 			
 		</div>		
-		<div class = "wrapper">
+		<div id = "8" onclick="window.location.hash='back'; " class = "wrapper">
 			<h3>8 Calling Riot's API and Object Oriented Design</h3>
 			
 			<p>It might seem like a long time since we tested our API key, but let's try to pick up where we left off and carry out that call we made over to this
@@ -338,7 +355,7 @@
 			
 			<p>So now we've caught up to where we were before. We can get into the real meat, which is extracting what we want from this JSON object we got</p>
 		</div>
-		<div class = "wrapper">
+		<div id = "9" onclick="window.location.hash='back'; " class = "wrapper">
 			<h3>9 JSON Objects</h3>
 			<p>According to the Riot Game's Developer getting started guide, their API's return JSON data. This means that you can use any programming 
 			language that has the ability to manipulate JSON objects, not just Javascript, like we're doing here. </p>
@@ -399,8 +416,8 @@
 			organized, nested, and accessible if you expand response.</p>
 			<center><img src="../stylesheets/object.png" alt="follow along" style="width:100%;height:100%;"></center>
 		</div>
-		<div class = "wrapper">
-			<h3>10 Access JSON Objects</h3>
+		<div id = "10" onclick="window.location.hash='back'; " class = "wrapper">
+			<h3>10 Accessing JSON Objects</h3>
 			<p>There are actually two ways to access JSON Objects. One is with dot notation, and another is with bracket notation. Which one should we use?
 			Test these two bolded lines out. </p>
 			<div class="info">
@@ -470,8 +487,8 @@
 			summoner name, we didn't actually pass it in through our input text slot called <code>aPromisedName</code>. That's because we directly wrote in our summoner 
 			name when extracting it from the object, which is not what happens IRL. How can we fix this? </p>
 			</div>
-			<div class = "wrapper">
-				<h3>12 Accessing JSON Objects with a Variable</h3>
+			<div id = "11" onclick="window.location.hash='back'; " class = "wrapper">
+				<h3>11 Accessing JSON Objects with a Variable</h3>
 				<p>The first thing you probably did was straight substitution, like seen below:</p>
 				<div class="info">
 						<p>
@@ -534,8 +551,8 @@
 			to lowercase and one word? This is because that is how Riot stores your summoner name in the database.</p>
 			</div>	
 		</div>
-		<div class = "wrapper">
-			<h3>13 Summoner Name Creation Rules</h3>
+		<div id = "12" onclick="window.location.hash='back'; " class = "wrapper">
+			<h3>12 Summoner Name Creation Rules</h3>
 			<center><img src="../stylesheets/creationRules.png" alt="follow along" style="width:100%;height:100%;"></center>
 			
 			<p>This random person puts it nicely. So in the end, even if our summoner name is <strong>CraZy SummonerName W ith Spaces</strong>, that is not
@@ -562,8 +579,8 @@
 			<script src="https://gist.github.com/rostun/0a29b2dbb1824463c67c.js"></script>
 			
 		</div>		
-		<div class = "wrapper">
-			<h3>14 The Riot API Universe</h3>
+		<div id = "13" onclick="window.location.hash='back'; " class = "wrapper">
+			<h3>13 The Riot API Universe and JSON Arrays</h3>
 			<center><img src="../stylesheets/apiRef.png" alt="follow along" style="width:100%;height:100%;"></center>
 			
 			<p>After all that, we've only really explored on API request, however, now that you know how to extract data from JSON objects and make variables
@@ -610,8 +627,8 @@
 			<p>Here is a JS function that outputs the first champions id out onto the console that you can try out.</p>
 			<script src="https://gist.github.com/rostun/ea05ade0209228e31ad8.js"></script>
 		</div>	
-		<div class = "wrapper">
-			<h3>15 The Pep Talk</h3>
+		<div id = "14" onclick="window.location.hash='back'; " class = "wrapper">
+			<h3>14 The Pep Talk</h3>
 			<p>If you are a beginner and have been following along, you've gotten a good start to working with API's. Learning anything can be sort of a 
 			trial and error sort of process. You will write a lot of thigns you don't end up using. I mean, Look what I had to got through to write this guide!</p>
 			<script src="https://gist.github.com/rostun/0a7489ec84c2454c4855.js"></script>
@@ -622,4 +639,5 @@
 		<div>
 			cupcake bullet by blueberryjoe.deviantart.com
 		</div>
+	</body>
 </body>
