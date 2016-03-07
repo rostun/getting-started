@@ -2,17 +2,18 @@
 
 <html>
 	<head>
+		<meta charset="utf-8">
 		<title>Riot API using Javascript</title>
 	</head>
 	<body>
 		<div>
 			<h1> Summoner Information </h1>
 			
-			<p>Enter Summoner Name: <input type="text" id="aPromisedName"/> </p>
-			<input type="button" value="Search Summoner" onclick="searchSummoner()"/> 
-			
+			<p>
+				Enter Summoner Name: <input type="text" id="aPromisedName"/>
+				<input type="button" value="Search Summoner" onclick="searchSummoner()"/> 
+			</p>
 			<h3>Basic Summoner Object</h3>
-			
 			<ul style="list-style-type:none">
 				<li><strong> Name: </strong> <span id="name"></span></li>
 				<li><strong> ID: </strong> <span id="id"></span></li>
@@ -21,6 +22,6 @@
 				<li><strong> Revision Date: </strong> <span id="revisionDate"></span> </li>
 			</ul>
 		</div>
-		<script src="followAlong.js"></script>
+		<script src="riotApiTest.js"></script>
 	</body>
 </html>

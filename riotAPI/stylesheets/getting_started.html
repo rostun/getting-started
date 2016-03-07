@@ -323,7 +323,7 @@
 			<h4>Let's not lose the bigger picture</h4>
 			
 			<p>So unofficially, this line is equivalent to us putting the request in the browser. We're not doing anything with it yet, it's just there all nice
-			and ready for something to happen to it </p>
+			and ready for something to happen to it. </p>
 			
 			<h4>3. Send the Request</h4>
 			<div class="info">
@@ -346,6 +346,8 @@
 			Remember when we said that a function was like an action. We want the action to execute on <code>'load'</code>. Right now all that function is
 			doing is outputting <code>responseText</code> to the console, which is Riot's response to our request. </p>
 			<center><img src="../stylesheets/responseText.png" alt="follow along" style="width:100%;height:100%;"></center>
+			<p>Here is what your JS file should look like at this point: </p>
+			<script src="https://gist.github.com/rostun/f772087b9a7836fd60ce.js"></script>
 			
 			<p>So now we've caught up to where we were before. We can get into the real meat, which is extracting what we want from this JSON object we got</p>
 		</div>
@@ -453,6 +455,8 @@
 						</code><br>
 					</p>
 			</div><br>
+			<p>If you're getting cross eyed from reading that, here is the entire HTML file in all it's glory and final form </p>
+			<script src="https://gist.github.com/rostun/2e23ebe09aed5c4f98a7.js"></script>
 			
 			<p>So now we have 5 things to fill: <code>name, id, summonerLevel, profileIconId, and revisionDate</code>. Great, now let's fill in those values in our JS file:</p> 
 			<div class="info">
@@ -520,28 +524,113 @@
 						</p>
 				</div>
 				
-				<p>With this, we get the id of any lowercase summoner name! We can change our previous lines to this new and better format: </p>
-				<div class="info">
+			<p>With this, we get the id of any lowercase connected summoner name! We can change our previous lines to this new and better format: </p>
+			<div class="info">
 					<p>
 						<code>
 						<span class = "tab"></span>console.log(response.misspapaya.id);
-						<strong><span class = "tab"></span>document.getElementById('id').textContent = response[aPromisedName]["id"];
+						<span class = "tab"></span>document.getElementById('id').textContent <br>
+						<span class = "tab"></span>= <strong>response[aPromisedName]["id"];</strong>
 						<span class = "tab"></span>document.getElementById('name').textContent<br> 
-						<span class = "tab"></span>= response[aPromisedName]["name"];
+						<span class = "tab"></span>= <strong>response[aPromisedName]["name"];</strong>
 						<span class = "tab"></span>document.getElementById('profileIconId').textContent<br> 
-						<span class = "tab"></span>= response[aPromisedName]["profileIconId"];
+						<span class = "tab"></span>= <strong>response[aPromisedName]["profileIconId"];</strong>
 						<span class = "tab"></span>document.getElementById('summonerLevel').textContent<br> 
-						<span class = "tab"></span>= response[aPromisedName]["summonerLevel"];
+						<span class = "tab"></span>= <strong>response[aPromisedName]["summonerLevel"];</strong>
 						<span class = "tab"></span>document.getElementById('revisionDate').textContent<br> 
-						<span class = "tab"></span>= response[aPromisedName]["revisionDate"];<br></strong>
+						<span class = "tab"></span>= <strong>response[aPromisedName]["revisionDate"];<br></strong>
 						});	</code><br>
 					</p>
 			</div><br>	
+			
+			<p>Everything works! But there is one thing that might have bugged you throughout this entire guide. Why do we need to convert our summmoner name
+			to lowercase and one word? This is because that is how Riot stores your summoner name in the database.</p>
 			</div>	
 		</div>
 		<div class = "wrapper">
-			<h3>10 The Riot API Universe</h3>
-			<center><img src="../stylesheets/apiKeys.png" alt="follow along" style="width:100%;height:100%;"></center>
+			<h3>13 Summoner Name Creation Rules</h3>
+			<center><img src="../stylesheets/creationRules.png" alt="follow along" style="width:100%;height:100%;"></center>
+			
+			<p>This random person puts it nicely. So in the end, even if our summoner name is <strong>CraZy SummonerName W ith Spaces</strong>, that is not
+			how it Riot sees it.</p>
+			
+			<p>But in the end, that is not common knowledge, and if you're building a website for the average person chances are if their summoner name is 
+			missPapaya in game with a capital, that is what they will try to search. If you put in your name and it has capital letters, it will actually be
+			stored that way as your "name" key. So actually we need to make three changes to our JS file: </p>
+			<div class="info">
+					<p>
+						<code>
+								var summonerName = getSummoner(); //store user input <br>
+								<strong>summonerName = summonerName.toLowerCase().trim();<br> 
+								summonerName = summonerName.replace(" ", "");</strong><br>
+						</code>
+					</p>
+			</div>			
+			
+			<p>So three things: <code><strong>toLowerCase(), trim(), .replace(" ", "")</code></strong>. <code>toLowerCase()</code> is self explanatory, it will 
+			change all the character of whatever object to lower case. <code>trim()</code> makes sure to get rid of any pesky spaces a user might accidentally put at 
+			the beginning or end of their text input. Finally, <code>.replace(" ", "")</code> will get rid of all the spaces <strong>in</strong> the username that is
+			entered. This way, even if a player enters in their actual in game username, by the time we make the request, Riot will have the real username to look up
+			in their hands. Your JS file in the end looks like this: </p>
+			<script src="https://gist.github.com/rostun/0a29b2dbb1824463c67c.js"></script>
+			
+		</div>		
+		<div class = "wrapper">
+			<h3>14 The Riot API Universe</h3>
+			<center><img src="../stylesheets/apiRef.png" alt="follow along" style="width:100%;height:100%;"></center>
+			
+			<p>After all that, we've only really explored on API request, however, now that you know how to extract data from JSON objects and make variables
+			to fill in the varying information that the APIs ask for, you can apply this knowledge to all the other APIs. If you take a look at the API 
+			reference page, you'll see them listed, and you'll be able to expand a section just to display the description by clicking "List Operations" like this: </p>
+			<center><img src="../stylesheets/apiRefExpand.png" alt="follow along" style="width:100%;height:100%;"></center>
+			
+			<p>You'll see that <code>api/lol/{region}/v1.2/champion</code> takes in one specification, the region. Actually for our Summoner Look Up Api you were also able to 
+			specify this, and we could if we made another variable to input it. However, we only specified the summoner name, so you saw that the default {region}
+			for us was "na", which is where we are. </p>
+			
+			<p>You might be looking at this <code>api/lol/{region}/v1.2/champion</code> and thinking "hm, this doesn't look like all of it! We were working with something that 
+			started with a http, and a..." Yep, you're right, it isn't all of it. You might be able piece it together yourself, but if you're having trouble just do this. 
+			Expand it further by clicking "Expand Operations", it should look like this: </p>
+			<center><img src="../stylesheets/apiRefExpandMore.png" alt="follow along" style="width:100%;height:100%;"></center>
+			
+			<p>You'll see a section where you can actually test it out to get the response, request, and a whole bunch of stuff!</p>
+			<center><img src="../stylesheets/showChampionsFreetoPlay.png" alt="follow along" style="width:100%;height:100%;"></center>
+			
+			<p>You might notice that this JSON object you get back as square brackets on top of curly brackets. wwwwhhhatttt???!</p>
+			
+			<h4>Don't be a Fray of JSON Array</h4>
+			
+			<p>The way you access JSON arrays is simple, let's take a look at a simplified version of the champion-v1.2 API with the same structure: </p>
+			<div class="info">
+					<p>
+						<code>
+							{"somePersonsSummonerName":[{"name":"annie", "name":"zyra", "name":"gnar"}]}
+						</code>
+					</p>
+			</div>				
+			
+			<p>Say we want to access Gnar's name. Well, this is what we would do: </p>
+			<div class="info">
+					<p>
+						<code>
+							response[aPromisedName][2]["name"];
+						</code>
+					</p>
+			</div>
+			<p>As you see, when we reach a key with an array (aka the left is encompassed in sqare brackets) we can navigate to whichever paid we want to 
+			by specifying the number. Why not put 3 in to get gnar? Because in computer land, things start at 0. The "first" element of an array is "0".</p>
+			
+			<p>Here is a JS function that outputs the first champions id out onto the console that you can try out.</p>
+			<script src="https://gist.github.com/rostun/ea05ade0209228e31ad8.js"></script>
+		</div>	
+		<div class = "wrapper">
+			<h3>15 The Pep Talk</h3>
+			<p>If you are a beginner and have been following along, you've gotten a good start to working with API's. Learning anything can be sort of a 
+			trial and error sort of process. You will write a lot of thigns you don't end up using. I mean, Look what I had to got through to write this guide!</p>
+			<script src="https://gist.github.com/rostun/0a7489ec84c2454c4855.js"></script>
+			
+			<p>Anyways, remember, if you get stuck, the internet is your best friend! So, Good Luck in the Fields of JSON!</p>
+			<center><img src="../stylesheets/glhf.png" alt="follow along" style="width:75%;height:75%;"></center>
 		</div>
 		<div>
 			cupcake bullet by blueberryjoe.deviantart.com
