@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>webGL Yay!</title>
+		<script src="awesomeEngine.js"></script>
+		<!--download these-->
+		<script src="libraries/sylvester.js"></script>
+		<script src="libraries/glUtils.js"></script>
+		<!--download these-->
+	</head>
+	<body onload="initGL()"> 
+		<canvas id="someID"  width="640" height="480"> 
+			Browser does not support the canvas element.
+		</canvas>
+	</body>
+	<script id="shader-vs" type="x-shader/x-vertex">
+		attribute vec3 position;
+		varying vec4 oPosition;
+		
+		//
+		uniform mat4 uMVMatrix;
+		uniform mat4 uPMatrix;		
+		//
+		
+		void main(void){
+			oPosition = vec4(position, 1.0);
+			//gl_Position = oPosition;
+			gl_Position = uPMatrix * uMVMatrix * oPosition;
+			//
+		}
+	</script>
+	<script id="shader-fs" type="x-shader/x-fragment">
+		precision mediump float; 
+		varying vec4 oPosition;
+		
+		void main(void){
+			gl_FragColor = (oPosition + 1.0) * 0.5;
+		}
+	</script>
+</html>

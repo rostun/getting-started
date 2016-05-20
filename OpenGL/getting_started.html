@@ -1,6 +1,6 @@
 <!--
 	Rosa Tung
-	Riot API Guide
+	WebGL Guide
 	getting_started.html
 -->
 
@@ -11,54 +11,57 @@
 		<title>Getting Started</title>
 		<link rel="stylesheet" type="text/css" href="../OpenGL/images/style.css"/>
 	</head>
-	<body>
-		<div id = "feature">
+	<body> <a name="top"></a>
+		<div id = "feature"> 
 			<div class = "wrapper" > <!--at the top-->
-			<h2>Guide to WebGL using Sylvester</h2>
+			<h2>Getting Started Guide to WebGL</h2>
 				<p>After reading this guide, you will know (or review):</p>
 				<ul id = "navlist">
-					<li> How to use Javascript to make HTTP calls </li>
-					<li> How to access and work with JSON objects </li>
-					<li> How to implement the Summoner Look Up API </li>
-					<li> How to translate Summoner Look Up to rest of Riot API's </li>
+					<li> How WebGL and OpenGL fit into the graphics scene and how it works </li>
+					<li> How to set up a standard 3D Canvas</li>
+					<li> How to implement the WebGL API "quad" using indices </li>
 				</ul>
 			</div>
 		</div>
 		<div class = "wrapper">
 			<h3>Guide Outline</h3>
 			&nbsp&nbsp1<span class = "tab"><a href="#1" id="back">Guide Assumptions</a><br>
-			&nbsp&nbsp2<span class = "tab"><a href="#2" id="back">What is an API?</a><br>
-			&nbsp&nbsp3<span class = "tab"><a href="#3" id="back">Lets get Started: The API Key</a><br>
-			&nbsp&nbsp4<span class = "tab"><a href="#4" id="back">Test your API key</a><br>
-			&nbsp&nbsp5<span class = "tab"><a href="#5" id="back">HTML: What information from the API to Display?</a><br>
-			&nbsp&nbsp6<span class = "tab"><a href="#6" id="back">Getting Information you want from the API: Javascript</a><br>
-			&nbsp&nbsp7<span class = "tab"><a href="#7" id="back">Add Functionality to your Webpage</a><br>
-			&nbsp&nbsp8<span class = "tab"><a href="#8" id="back">Calling Riot's API and Object Oriented Design</a><br>
-			&nbsp&nbsp9<span class = "tab"><a href="#9" id="back">JSON Objects</a><br>
-			10<span class = "tab"><a href="#10" id="back">Accessing JSON Objects</a><br>
-		    11<span class = "tab"><a href="#11" id="back">Accessing JSON Objects with a Variable</a><br>
-		    12<span class = "tab"><a href="#12" id="back">Summoner Name Creation Rules</a><br>
-		    13<span class = "tab"><a href="#13" id="back">The Riot API Universe and JSON Arrays</a><br>
-		    14<span class = "tab"><a href="#14" id="back">The Pep Talk</a><br>
+			&nbsp&nbsp2<span class = "tab"><a href="#2" id="back">API's and OpenGL Origins </a><br>
+			&nbsp&nbsp3<span class = "tab"><a href="#3" id="back">An Introduction to the WebGL API</a><br>
+			&nbsp&nbsp4<span class = "tab"><a href="#4" id="back">Let's get Started: set up your files</a><br>
+			&nbsp&nbsp5<span class = "tab"><a href="#5" id="back">Fetch the WebGL Context</a><br>
+			&nbsp&nbsp6<span class = "tab"><a href="#6" id="back">Rendering Content</a><br>
+			&nbsp&nbsp7<span class = "tab"><a href="#7" id="back">Chores: Shader Scripts</a><br>
+			&nbsp&nbsp8<span class = "tab"><a href="#8" id="back">More Chores: Shader Functions</a><br>
+		    &nbsp&nbsp9<span class = "tab"><a href="#9" id="back">Learn the first quad, learn them all!</a><br>
+			10<span class = "tab"><a href="#10" id="back">Model View Matrix and Camera View </a><br>
 		</div>
-		<div id = "1" onclick="window.location.hash='back'; " class = "wrapper" >
-			<h3>1 Guide Assumptions</h3>
+		<div id = "1" onclick="window.location.hash='back'; " class = "wrapper" > 
+			<h3><a href="#top">1</a> Guide Assumptions </h3> 
 			
-			<p>This guide is designed for mostly for beginners who are looking for a way to get started using Riot's API, but it can also 
-			be useful for someone curious about how to use Javascript to implement the process. <strong>Although what we end up with will 
-			be very bare bones; the minimum needed for demonstration purposes. </strong> It does not assume that you have any prior experience 
-			working with API's, but it will help. There are a few things that you need to follow along with the examples in this guide:</p>
+			<p>This guide will be useful for 3D artists new to the technical side of graphics looking for an in depth guide that transcends 
+			beyond executable code and emphasizes concepts. If you're looking for a quick boom bam look-I-have-my-model-in-canvas step
+			by step tutorial then this guide might not be for you. I will be extensively going through and explaining every line of code 
+			and concept as best as I can. My hope is that the knowledge will give you a sustainable base to work off of independantly on 
+			your own. There are many getting started with WebGL guides out there, so this can be seen as both a standalone or a complement 
+			to them. <strong>While you do not need to know how to program to implement and understand the examples, this guide assumes you 
+			have knowledge of the 3D Modeling and Texturing pipelines for games as well as basic knowledge in programming concepts (like 
+			knowing what a variable or a function is). </strong></p>
+			
+			<p>There are a few things that you need to follow along with to implement the examples in this guide:</p>
 			
 				<ul>
-					<li>A <a href="http://www.leagueoflegends.com">League of Legends</a> account.</li>
-					<li>Something that handles HTTP requests and responses. </li>
+					<li><a href="http://www.doesmybrowsersupportwebgl.com/">A device that has hardware to support WebGL features</a></li>
+					<li>Something that handles HTTP requests and responses (basically your browser) </li>
+					<li><a href="http://caniuse.com/#feat=canvas">A browser that supports the HTML canvas tag</a></li>
 				</ul>
 			
-			<p>If you are totally new to programming don't worry, you don't need any prior experience to follow along with
-			the guide. You don't even need to download anything to test your API, although having some kind of text editor like 
-			<a href="https://notepad-plus-plus.org/">notepad++</a> might help make things more readable. But you don't even need 
-			that either, you can just make a txt document and change the extension to whatever you need. However, having some knowledge 
-			of programming concepts will help in your understanding of the examples. </p>
+			<p>You don't even need to download anything to see the results of your labour, you can just open up your file in browser and 
+			it'll show you the goods. Although having some kind of text editor like <a href="https://notepad-plus-plus.org/">notepad++</a> 
+			or <a href="https://www.sublimetext.com/">sublime text </a> might help make things more readable when you're writing your files. 
+			But you don't even need that either, you can just make a txt document and change the extension to whatever you need. However, 
+			having some knowledge of programming languages and concepts (specifically HTML and Javascript) will help in your understanding 
+			of the examples. </p>
 			
 			<p> On the other hand, if you are using this as a starting point for Javascript or even HTML, here are some introduction 
 			resources to get you started:</p>
@@ -69,585 +72,751 @@
 					<li><a href="http://www.w3schools.com/html/html_intro.asp">w3schools HTML</a></li>
 				</ul>
 			
-			<p>This guide only goes over code examples that you can easily test out as long as you have something that handles HTTP request 
-			and responses. What it means to the average person is just basically opening up your html file in browser and, theoretically, 
-			everything should work. If or how you want to host it is totally up to you! Let's get started! </p>	
+			<p>You can easily test the code example by just basically opening up your html file in browser and, theoretically, everything 
+			should work. If or how you want to host it is totally up to you! Let's get started! </p>	
 		</div>
 		<div id = "2" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>2 What is an API? </h3>
+			<h3><a href="#top">2</a> API's and OpenGL Origins </h3>
 			<p>In layman's terms, you can think of an API as an agreement between two people stating </p>
 				<div class="info">
 					<p><strong>"If you give me this instruction, I will perform this action, or return this information"</strong></p>
 				</div>
 			<p>Most people are used to interacting and navigating on a website through some sort of graphical interface to get information, 
-			for example, to check the weather. However, machines don't need any of that to check the weather, and neither do you, if you know 
-			how to comprehend this alternative "user interface" that software use to interact with other software. This shorthand way 
-			to do things like checking the current weather or adding an event to your calendar is what an API provides.</p>
+			for example, to check the weather. However, machines don't need any of that to check the weather, and neither do you, if you 
+			know how to comprehend this alternative "user interface" that software use to interact with other software. This shorthand way 
+			to do things like checking the current weather or adding an event to your calendar is what an API provides. If you are familiar 
+			with using <strong>libraries</strong> when programming, it's sort of like that. </p>
+			
+			<p><strong>OpenGL</strong> is essentially an API that heavily interfaces with the graphics card drivers. You can see it as an API 
+			that lets you interact with the graphics hardware, similar to direct3D. For example, suppose you're modeling something and you have 
+			a UV map, a texture map, maybe a normal or ambient occlusion map and you slap them on your model, put some lights in, and hit the 
+			render button in Maya or play button in Unity. </p>
+
+				<center>The scene holds the information, OpenGL interprets this information and spouts it on the screen.</center>
+				<center><img src="../OpenGL/images/render.png" alt="follow along" style="width:75%;height:75%;"></center>
+				<center><footer>https://github.com/zicher3d-org/domemaster-stereo-shader/wiki/Maya-DomeAFL_FOV_Stereo</footer></center>
+				
+			<p>So that middle part between your model and the picture is sort of the role of our API, done in browser. How it works is that 
+			you have some vertices of something you want to draw (so some sort of shape) and then you give that to OpenGL (so you tell OpenGL 
+			this is your data) and OpenGL will take your shaders that tells how you want to draw this data (normal, diffuse, height, etc) that 
+			you gave OpenGL. So then from there it takes this information you specified (shaders you used, vertices you've given it, etc) and 
+			it tells the pixels on the screen what color to be. To us it feels like we're telling it to be a certain material, light, angle, etc. 
+			but in the end it all ends up as the same thing: a colored pixel on a screen. Essentially it converts triangles to pixels. </p>
+				
+				<center>tada!</center>
+				<center><img src="../OpenGL/images/prometheus.jpg" alt="follow along" style="width:75%;height:75%;"></center>
+				<center><footer>http://hradec.com/ebooks/CGI/RMS_1.0/Recipes_and_Tutorials/Prometheus.html</footer></center>				
+			
+			<p>So why do you need to do this? You probably already know the difference between a Raster image and a Vector image. If not, below
+			is an visual example. </p> 
+			
+				<center><img src="../OpenGL/images/vector_raster.gif" alt="follow along" style="width:75%;height:75%;"></center>
+				<center><footer>http://www.amywaggs.com/raster-vs-vector/</footer></center>
+				
+			<p>Well it's like that (except include the 3D dimension). Even though <strong>you</strong> understand vertices and OpenGL understands 
+			vertices and Maya/Illustrator/etc understands vertices, the screen doesn't. The screen is just a bunch of pixels and when you work in 
+			those programs and zoom in and it seems like the detail is still crystal clear it's really just the screen adjusting constantly to keep 
+			that detail of what a vector or edge is. We call the space in which you're drawing your vertices the <strong>World Space</strong>. Sort 
+			of like how you model something in maya or Zbrush, you know that your model only exists in this fake virtual space, and this space holds 
+			the position of the vertices in it. The screen we call <strong>Screen Space</strong>. </p>
+			
+			<p>At the present time, OpenGL is the cross platform standard in how game engines are written (direct3D is the microsoft standard, 
+			or some say <strong>directX</strong> now). If you're wondering why, let's go down memory road way back in the olden days (about 20 
+			years ago). </p>
+			
+			<p>So before the official release of OpenGL and the use of graphics hardware, games used to just have the CPU do all the 
+			graphics calculations, which is kind of inefficient for several reasons. First of all, this means that it's one more thing that the
+			computer has to think about, which puts a severe limit on what you can do as well as a lot of stress on the CPU. While the CPU is 
+			actually pretty good at doing a lot of things at once (and pretty well) it doesn't do one specific thing the best. Sort of the whole 
+			jack of all trades but master of none concept. Or if we want to keep to the spirit of graphics there's the whole thousand chickens 
+			vs the draft horse saying by <a href="http://luebke.us/">David Luebke</a>.</p>
+			
+			<p>So anyways, graphics hardware is good at being the draft horse, specifically calculating many pixels very very fast (but on the 
+			other hand, does everything else pretty poorly) so thus became the new standard, or "correct way" to draw things on the screen. </p>				
 		</div>
 		<div id = "3" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>3 Lets get Started: The API Key </h3>
+			<h3><a href="#top">3</a> An Introduction to the WebGL API</h3>
 			
-			<p>You can think of the <strong>API key</strong> as a password for you to gain access to information. Every Riot Games API request 
-			requires an API key, so you will need to include your API key using the api_key for each request you want to make/use.</p>
+			<p>So how does <strong>WebGL</strong> fit into all of this? If you guessed that because of the whole GL thing that they must be 
+			related, you're right. OpenGL and WebGL are both done by this group called <strong>Kronos</strong>. WebGL is basically, as its 
+			name suggests, the web version of OpenGL. WebGL is basically the same as <strong>OpenGL ES</strong>, which is the version of the 
+			OpenGL library that is used for <strong>mobile</strong>. They're basically the same thing except that this web version uses 
+			Javascript instead of c++ or Java or whatever language you use. Also WebGL is a little easier to set up, since you can see your 
+			files in browser. </p>
 			
-			<p>If you play or have played League of Legends before, you probably already have a League of Legends account. 
-			So to get the API key, all you need to do is navigate to the <a href="https://developer.riotgames.com/sign-in">Riot Games Developers</a> 
-			website and sign in with your summoner name and password. After you've signed up, you will be able to see your API
-			key on the dashboard. <strong> Copy and paste it in a file somewhere. </strong> You can always go back to your dashboard to retrieve 
-			it again but it's good to get into the habit of making sure you have a copy of your keys floating around somewhere (somewhere safe). 
-			
-			<p>You'll see that there is a short <a href="https://developer.riotgames.com/docs/getting-started">getting started</a> orientation page 
-			that you can read. </p>
-			
-			<center><img src="../stylesheets/gettingStarted.png" alt="getting started" style="width:100%;height:100%;"></center>
-			
-			<p>There are several different versions of keys, the one you get by default has the smallest rate limit. Unless you're trying to 
-			make a site like op.gg or have big dreams, you'll be quite okay with the key you have now. They also mention that you should be familiar 
-			with JSON objects and Object Oriented programming before getting started. Don't worry brah, this guide has got yah covered on dat! </p>
+			<p>On the other hand, if you are familiar with <code>&ltcanvas&gt</code> already, just think of it like a 3D canvas. Actually, 3D
+			canvas <strong>is</strong> WebGL because WebGL is rendered onto a canvas element with a <strong>context</strong> acquired from that 
+			canvas element. This action of getting a context is sort of like getting the toolbox that lets us do draw-y things.</p>
 		</div>
 		<div id = "4" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>4 Test your API key</h3>
-			<p>Before we get started, we want to make sure that your API key actually works. Nothing is more lame than spending an inordinate amount 
-			of time trying to figure out what is wrong with your program and then realizing that you copied your API key wrong or something. So open 
-			up your browser and test the Summoner Look Up request! </p>
+			<h3><a href="#top">4</a> Let's Get Started: Setting up your files</h3>
 			
-			<p>To test the request, just enter in the request like how you would enter a web page in, as seen below. (Remember to replace 
-			<code>&ltkey&gt</code> with <strong>your API Key</strong>). If you want to see your details, replace <code>riotSchmick</code> with your 
-			summoner name</p>
+			<p>To follow along with this guide, you'll need set up some files to work with. So create an empty text file and rename it ironically
+			to awesomeEngine with a .js extension instead of a .txt extension (awesomeEngine.js). Then create a text file and rename it to 
+			awesomeEngine again but this time with a .html extension instead of a .txt extension (awesomeEngine.html) and fill it with this: </p>
 			
-			<center><img src="../stylesheets/testAPI.png" alt="getting started" style="width:100%;height:100%;"></center>
+				<script src="https://gist.github.com/rostun/384e795d97586db89893e071c5d2cf04.js"></script>
 			
-			<p>If your key works, you should see something like this: </p>
+			<p>If you've been snooping around for webGL tutorials you might have seen this already, so sit tight! If you're a beginner, you might
+			be thinking, what did I just do? Well, if you go to the folder where this file is and double-click on it, or right click and open it, 
+			it should pop up in your web browser as an empty page (folllowAlong.html could be any html file). However if you right click on it 
+			and "inspect" it you should see what you've written in the element tab:</p>
 			
-			<center><img src="../stylesheets/testAPISuccess.png" alt="getting started" style="width:100%;height:100%;"></center>
+				<center><img src="../OpenGL/images/1.png" alt="follow along" style="width:75%;height:75%;"></center>
 			
-			<p>You can probably already tell how the information is organized for this request. You see your summoner name and details about your account 
-			in quotes, and that this information is organized in a certain way. You can only assume this form is in <strong>JSON</strong>, because that's 
-			what rito said! But if you're a beginner you might be asking what even is JSON? What's an Object? How do I extract this information that 
-			I got from this API to make something that users can interact with? Well, no better way to learn than to get this process started! </p>
+			<p>So an HTML file is basically the web page version of a text file and comes with it's own rules for implementation. 
+			You might notice that your html file doesn't look like the web page you just opened, although you can see the contents distributed 
+			throughout the html file with the words enclosed with "<" and ">" characters not appearing in the browser page. Those are called 
+			<strong> HTML Tags </strong>. HTML tags are the hidden keywords within a web page that define how the browser must format and display 
+			the content. We won't go into too much detail, but you can easily look up or even deduce what all the tags do and mean. For example 
+			the words enclosed by the <code>&lttitle&gt</code> and <code>&lt/title&gt</code> tags appear as the description in the web tab. If 
+			you haven't guessed already, the line that the <code>&ltscript&gt</code> tags appear are where we link our javascript file to the 
+			HTML file so we can actually use all the cool stuff we do later on</p>
+			
+			<p>One special tag that foreshadows what we'll be doing next is the <code>&ltbody&gt</code> and <code>&ltcanvas&gt</code> tag. 
+			That is what is so great about webGL. All you need to get started is a body and canvas(where you draw). The text you see in 
+			between the canvas tags will only show on the page if your browser doesn't support the canvas element. </p>
+				
+				<div class="info">
+						</code>&ltcanvas&gt</code><br>
+						<span class = "tab"></span></code><strong>Browser does not support the canvas element.</strong><br>
+						</code>&ltcanvas&gt</code><br>
+				</div>
+				
+			<p>Usually it's supported unless you're on internet explorer 8/9 or below (basically if your browser is super old or on a weird 
+			device like I mentioned before. If it is then I can only say get with the program dude and upgrade your browser!). </p>
+			
 		</div>
 		<div id = "5" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>5 HTML: What information from the API to Display?</h3>
-			<p>To follow along with this guide, you'll need set up some files to work with. Let's first start with the HTML file. 
-			This is a good time to start thinking of what you want to show in your web page. For the sake of demonstration, we'll be showing every 
-			element that the Summoner Look Up Object has to give. </p>
+			<h3><a href="#top">5</a> Fetch the WebGL Context</h3>	
 			
-			<p>So create a text file and rename it to riotApiTest with a .html extension instead of a .txt extension (riotApiTest.html) and fill it with this: </p>
-				<script src="https://gist.github.com/rostun/87a3665570a8044a1b22.js"></script>
+			<p>So in your awesomeEngine.js file we're going to start by declaring a global variable called <code>gl</code>. </p>
 			
-			<p>If you're a beginner, you must be thinking, what did I just do? Well, if you go to the folder where this file is and double-click on it, 
-			or right click and open it, it should pop up in your web browser as something that looks like this (folllowAlong.html could be any html file):</p>
-			<center><img src="../stylesheets/followAlong.png" alt="follow along" style="width:75%;height:75%;"></center>
-			
-			<p>An HTML file is basically the web page version of a text file and comes with it's own rules for implementation. 
-			You might notice that your html file doesn't look like the web page you just opened, although you can see the contents distributed throughout
-			the html file with the words enclosed with "<" and ">" characters not appearing in the browser page. Those are called <strong> HTML Tags </strong>. 
-			HTML tags are the hidden keywords within a web page that define how the browser must format and display the content. We won't go into too much 
-			detail, but you can easily look up or even deduce what all the tags do and mean. For example the words enclosed by the <code>&lttitle&gt</code> 
-			and <code>&lt/title&gt</code> tags appear as the description in the web tab. </p>
-			
-			<p>One special tag that foreshadows what we'll be doing next is the <code>&input type="text"/&gt</code> tag. This actually enables a place 
-			for text input (you can try typing in it). You may have already typed your summoner name and then halfway through realized that there's no 
-			way to submit it. Thus, let's add an input type called <code>button</code> and label it <code>Search Summoner</code>. Add the new input type 
-			into your html file as shown below: </p>
 				<div class="info">
-						</code>&ltp&gt&ltinput type="text"/&gt&lt/p&gt</code><br>
-						</code><strong>&ltinput type="button" value="Search Summoner"/&gt</code></strong><br>
-						<br>
-						</code>&lth3&gtBasic Summoner Object&lt/h3&gt</code>
+					<br><span class = "tab"><code> var gl = {}; </code><br><br>
+				</div>
+			
+			<p>Many guides (and people for that matter) just do <strong><code>var gl;</code></strong> which is perfectly fine. The empty 
+			curly braces sets it to an object so you don't get undefined errors when you try to use it when it doesn't exist yet, so it'll 
+			help prevent null errors (well not exactly prevent, they'll just be silent). </p>
+			
+			<p>So now we need some kind of initialization function which will basically start webGL for us. So after declaring your global
+			variable we're going to add a function underneath with another variable. </p>
+				
+				<div class="info">
+					<code>function initGL(){<br>
+					<span class = "tab">var canvas = document.getElementById("someID");<br>
+					}</code>
+				</div>		
+			
+			<p>So what <strong><code>var canvas = document.GetElementById("someID")</code></strong> is doing is getting a reference to the canvas
+			DOM element. It's basically saying "I want whatever canvas element in awesomeEngine.html that has an id called "someID" to be a webGL 
+			canvas". We haven't actually gotten the WebGL context yet, but we're grabbing this canvas because that is eventually what we want to do.
+			Oh, but wait, we haven't actually assigned our canvas in our HTML document to an id, more specifically "someID" , so let's add this id 
+			to our canvas element:</p>
+			
+				<div class="info">
+						</code>&ltcanvas <strong>id="someID"</strong>&gt</code><br>
+						<span class = "tab"></span></code>Browser does not support the canvas element.<br>
+						</code>&ltcanvas&gt</code><br>
+				</div>	
+				
+			<p>So if you got stoked and refreshed your page you'll see that nothing happened. Well, that's good nothing is supposed to 
+			happen. All this line is doing for us is it's basically giving us a variable we can manipulate. Basically this variable <strong>
+			is</strong> the OpenGL state. This is like an OpenGL state machine that we can now manipulate. But to manipulate it, we need the
+			<strong>toolbox</strong>. Well, that is what this block of code is for! Put this after the previous line: </p>
+				
+				<div class="info">
+					<br><code>gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");</code><br><br>
+				</div> 
+			
+			<p>Now you don't need to do this, but I'm going to put this within a try catch block. </p>		
+			
+				<div class="info">
+
+					<code><strong>try{<br></strong>
+					gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");<br>
+					<strong>}<br>
+					catch(e){}</strong></code>
+				</div><br>
+			
+			<h4>Why is this considered good practice?</h4>
+			
+			<p>So the inspector actually will show WebGL failures unlike OpenGL, which just fails silently. Well, actually, WebGL still fails 
+			silently, but the difference between OpenGL and WebGL is that WebGL has a browser that will tell you that it's failing silently. 
+			So if it does this for us why do we need this try catch block? Well, in a real world setting when WebGL fails you would probably 
+			want to handle it as opposed to letting it get to the user. So even if you still don't really handle it (here we're just kind of 
+			eating it and doing nothing) you still just want to make sure if you're thrown an exception it gets handles in some way 
+			(even if it's doing nothing). </p>
+			
+			<p>We can also add in an alert that will pop up if there's an absense of a GL context:</p>
+			
+				<div class="info">
+					<code>if(!gl){<br>
+					<span class = "tab">alert("unable to initialize webGL. Your browser may not support it");<br>
+					}</code>
+				</div>				
+			
+			<p>This alert well run if we can't get gl or it fails, which means there's a problem. You've already probably ran that web page to 
+			check, so you shouldn't get this, but still, could be good to have just in case someone else is opening your file. </p>			
+			
+			<p>So what we are trying to do is try to grab the standard context with our <code>gl</code> variable we declared earlier. 
+			That is the <code>canvas.getContext("webgl")</code> portion. If that fails we need to fallback to <strong>experimental-webgl
+			</strong> which the older version that came before standard webgl. You can think of <code>canvas.getContext("webgl")</code> 
+			as <strong>the action of giving us a toolbox</strong>. This one line is sort of like a one time getting access. Kind of like 
+			opening up a new document in Photoshop (but of course, not quite!). So what ends up in <strong>gl</strong>? An object. From now 
+			on when we use access gl or use gl, imagine <strong><code>gl</code></strong> as an object, similar to the toolbox that we would 
+			have access to and use once we have opened up our document in Photoshop. </p>
+			
+			<p>And finally, no matter what, let's return out gl object: </p>
+				
+				<div class="info">
+					<code>if(!gl){<br>
+					<span class = "tab">alert("unable to initialize webGL. Your browser may not support it");<br>
+					}<br>
+					<strong>return gl;</strong></code>
+				</div>			
+			
+			<p>If you're still refreshing your page and wondering what's up then you've guessed right again, nothing is supposed to happen!
+			Remember, all we got is a "toolbox" that allows us to draw. I'll add some logs to the console for the next step. So now we need 
+			to use this function, so lets call it in our awesomeEngine.html: </p>
+			
+				<div class="info">
+					<code>&lt/head&gt<br>
+						<span class = "tab">&ltbody <strong>onload="initGL()"</strong>&gt<br>
+						<span class = "tab"><span class = "tab">&ltcanvas id="someID"&gt</code>
+				</div>
+				
+			<p><code>onload</code> is basically an events tag that has an anonymous function on it. Here we need parenthesis because 
+			the function we're calling is actually Javascript. So now lets add a log to the console in our function so we can see it 
+			actually working: </p>
+				
+				<div class="info">
+					<code>function initGL(){<br>
+						<span class = "tab"><strong>console.log("omg we're in the function!");</strong><br>
+						<span class = "tab">var canvas = document.getElementById("someID"); </code>
+				</div>			
+			
+			<p>So now if you refresh your browser (with the inspector still open) and switch over to the console tag you should see the 
+			first fruits of your labour!</p>
+			
+				<center><img src="../OpenGL/images/2.png" alt="follow along" style="width:75%;height:75%;"></center>
+				
+			<p>Okay, so nothing appears to happen still. But we know something happened. Since our alert wasn't set off, we know that 			
+			gl was successfully made. But nothing happens because while we've set our function to do something in the event that gl 
+			<strong>doesn't</strong> work with the <code>if(!gl)</code> statement, we haven't actually told our function to do anything 
+			if gl <strong>does</strong> work. Right now it exists but that's all it is doing and being; a toolbox just sitting there, waiting
+			for us to use it to draw something. </p>
+			
+		</div>		
+		<div id = "6" onclick="window.location.hash='back'; " class = "wrapper">
+			<h3><a href="#top">6</a> Rendering Content</h3>
+			
+			<p>So let's draw something. Let's add in another if statement of the opposite kind. If gl does in fact work, we will execute 
+			all the things in this if statement below: </p>
+				
+				<div class="info">
+					<code>if(!gl){<br>
+					<span class = "tab">alert("unable to initialize webGL. Your browser may not support it");<br>
+					}<br>		
+					<strong>if(gl){<br>
+					<span class = "tab">gl.clearColor(0.0, 0.0, 0.0, 1.0);<br>
+					<span class = "tab">gl.enable(gl.DEPTH_TEST);<br>
+					<span class = "tab">gl.depthFunc(gl.LEQUAL);<br> 
+					<span class = "tab">gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);<br> 
+					<span class = "tab">gl.viewport(0,0, canvas.width, canvas.height);<br>
+					}></strong><br>
+					return gl;</code>
+				</div>	
+			
+			<p>If you refresh the page you should finally see your canvas and get something that looks like this: </p>
+			
+				<center><img src="../OpenGL/images/6.png" alt="follow along" style="width:75%;height:75%;"></center>
+			
+			<p>So what did that if statement do? Let's break it down line by line.</p>
+			
+			<h4><strong><code>gl.clearColor(0.0, 0.0, 0.0, 1.0);<br>gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);</code></strong></h4>
+			
+			<p>So this is a two step process. <strong><code>clearColor</code></strong> is basically answering the question of "what color does 
+			a blank screen look like for me?" in RGBA values and <strong><code>clear</code></strong> is where you are actually filling it with 
+			whatever <code>clearColor</code> defines is your blank canvas color and it works sort of like a memset in c, clearing everything first
+			so that anything old in there is no longer there. The two statements are like two bit flags that are "cleared" or flushed with the color. 
+			The single pipe is a <strong>bitwise or</strong> (kind of like a binary addition except there's no carrying). </p>
+			
+			<p>Anyways, here I just set my "color" to a clear color (nothing) but because I have the alpha channel cranked all the way to 1 so that's
+			why we have a black background. Don't like black? Well you can just pick your <code>clearColor(R, G, B, A) </code> values if you so desire 
+			and there are some websites out there that will make it easier. </p>
+			
+			<p>Sometimes I'll just go to a site like <a href="http://www.avatar.se/molscript/doc/colour_names.html">this</a> 
+			that has some predefined colors and their RGBA values.</p>
+			
+				<center><img src="../OpenGL/images/beige.png" alt="follow along" style="width:75%;height:75%;"></center><br>
+				<div class="info">
+					<h4><strong><code>gl.clearColor(0.960784, 0.960784, 0.862745, 1.0);</code></strong></h4>
+				</div> <br>
+				<center><img src="../OpenGL/images/beige1.png" alt="follow along" style="width:75%;height:75%;"></center>
+			
+			<p>Or if you really want to pick out your own color look for a site like <a href="http://colorpicker.angelqm.com/">
+			this</a> that lets you do just that, even playing around with the alpha value! (I didn't in my example below, but you can!)</p>
+				
+				<center><img src="../OpenGL/images/rgb1.png" alt="follow along" style="width:75%;height:75%;"></center><br>
+				<div class="info">
+					<h4><strong><code>gl.clearColor(0.2, 0.63, 0.62, 1.0);</code></strong></h4>
+				</div> <br>
+				<center><img src="../OpenGL/images/blue.png" alt="follow along" style="width:75%;height:75%;"></center>			
+				
+			<p><strong>If you are looking around for websites, make sure the RGBA values they give are on a scale of 0-1. </strong></p>
+			
+			<p>So now lets look at these two lines: </p>
+			
+			<h4><strong><code>gl.enable(gl.DEPTH_TEST);<br>gl.depthFunc(gl.LEQUAL);</code></strong></h4>
+
+			<p>So actually, you don't really need those two lines for this guide but you probably will be wanting them in the future.
+			<code>enable(gl.DEPTH_TEST)</code> enables a depth test and <code>depthFunc(gl.LEQUAL)</code> is when the actual comparing 
+			is being done. Together they make it so that if you have things behind each other it'll draw it in the right order, sort of 
+			like how layers work in Photoshop. </p>
+			
+				<center><img src="../OpenGL/images/layers.gif" alt="follow along" style="width:25%;height:25%;"></center>		
+				<center><footer>http://www.webreference.com/graphics/column32/index.html</footer></center>			
+				
+			<p><code>LEQUAL</code> is synonymous with <= which is the default comparison, although you could switch it to the other 
+			comparison, and since the layers are all in the same order anyways it won't matter too much just how you interpret what is 
+			behind or in front. There are some who say the default is better because otherwise you might get unexpected results with your 
+			shaders later, but that's life! </p>
+			
+			<p>So finally we have the viewport. </p>
+			
+			<code><strong>gl.viewport(0, 0, canvas.width, canvas.height);</strong></code>
+			
+			<p>If you somehow played around with deleting lines and seeing what they do, you might notice 
+			that even if you delete this line you'll still get the same black canvas. Well, when a webGL context is made its viewport will 
+			automatically match the size of the canvas, that's why. And the viewport will match the height and width of our canvas. 
+			We didn't specify a height or width for our canvas, but it has a default size, which if you scrolled over in the inspector 
+			you would have been able to see it highlighted. </p>
+				
+				<center>looks awfully familiar, right?</center>
+				<center><img src="../OpenGL/images/5.png" alt="follow along" style="width:75%;height:75%;"></center>
+			
+			<p>Actually as a side note, you can specify your own dimensions if you want to, by just doing this: </p>
+				
+				<div class="info">
+					<code>&ltcanvas id="someID"  <strong>width="640" height="480"</strong>&gt<br>
+					<span class = "tab">Browser does not support the canvas element.<br>
+					&lt/canvas&gt</code>
+				</div>			
+			
+			<p>And you'll see, even without the viewport line called, we'll get our canvas</p>
+			
+				<center><img src="../OpenGL/images/4.png" alt="follow along" style="width:65%;height:65%;"></center>
+				
+			<p>Well, actually, the importance of the viewport and it's role is nicely outlined 
+			<a href="http://webglfundamentals.org/webgl/lessons/webgl-resizing-the-canvas.html">here</a>. So by declaring this viewport 
+			line you are doing what a vector based program such as Maya or Illustrator is doing when you zoom in or out. They keep the 
+			detail! So basically the job of the viewport is to tell openGL how big your drawing field is. Although this happens automatically 
+			when the context is made, it only happens once. So if you somehow have a full screen canvas, or need to adjust your canvas 
+			resolution due to either it being on another window or the user shrinking/expanding the window, you're going to need to update 
+			your resolution somehow. </p>
+			
+		</div>
+		<div id = "7" onclick="window.location.hash='back'; " class = "wrapper">
+			<h3><a href="#top">7</a> Chores: Shader Scripts</h3>
+			<p>Now we have our filled drawing area, we still need to do a few chores before we get drawing. Just in case, these are how 
+			the html and js files look like so far. </p>
+			
+			<script src="https://gist.github.com/rostun/1cce359415249272afdcbd91709d97d0.js"></script>
+			<script src="https://gist.github.com/rostun/02b2e8c57627ee51cb6316bcb7116268.js"></script>
+			
+			<p>So...shaders. Remember that this is a 3D canvas, so what happens when you don't have a shader in Maya? Well if you kind of click 
+			around the scene you might accidentally click on it and the wereframe will highlight and you'll get a wireframe version of your model,
+			but if you try to render it you don't see anything! So we need those shaders! </p>
+			
+				<center>Where did it go??</center>
+				<center><img src="../OpenGL/images/noshader.jpg" alt="follow along" style="width:50%;height:50%;"></center>
+				<center><footer>http://www.3dtutorialzone.com/tutorial?id=84</footer></center>
+		
+			<p>So pop these two shaders into your html file: </p>
+
+				<div class="info">
+					<code>&lt/body&gt<br>
+					<strong>&ltscript id="shader-vs" type="x-shader/x-vertex"&gt<br>
+					<span class = "tab">attribute vec3 position;<br>
+					<span class = "tab">varying vec4 oPosition;<br>
+						
+					<span class = "tab">void main(void){<br>
+					<span class = "tab"><span class = "tab">oPosition = vec4(position, 1.0);<br>
+					<span class = "tab"><span class = "tab">gl_Position = oPosition;<br>
+					<span class = "tab">}<br>
+					&lt/script&gt<br>
+					&ltscript id="shader-fs" type="x-shader/x-fragment"&gt<br>
+					<span class = "tab">precision mediump float;<br>
+					<span class = "tab">varying vec4 oPosition;<br>
+						
+					<span class = "tab">void main(void){<br>
+					<span class = "tab"><span class = "tab">gl_FragColor = (oPosition + 1.0) * 0.5;<br>
+					<span class = "tab">}<br>
+					&lt/script&gt</strong></code>
+				</div>	
+				
+			<p>So we need two types of shaders here; <strong>fragment</strong> and <strong>vertex</strong> shaders. Also, the reason we don't put 
+			those in our js file is because they're no actually written in Javscript. Well, if you really wanted to you could do it as a string 
+			in your function, like this: </p>
+			
+				<div class="info">
+					<code>var fs = "prevision mediump float;" + <br>
+					"<span class = "tab">varying vec4 oPosition;" + <br>
+					"<span class = "tab">varying vec3 oNormal;" + <br>
+					"<span class = "tab">varyin vec2 oUv;" +	<br>		
+					"<span class = "tab">void main(void){" + <br>
+					"<span class = "tab">gl_FragColor=(oPosition + 1.0) * 0.5;" + <br>
+					"<span class = "tab">}" ;</code>
+				</div>
+				
+			<p>Or you could just do it in one long string but that's even less readable...so we're going to just do it in html. So anyways, these 
+			shaders are in what's called <strong>GLSL</strong> which is an OpenGL shading language similar to c. Sort of like how if you wanted to 
+			write shaders in Unity you would use a language called <strong>Shaderlab</strong>, which is a different thing on its own. So let's talk 
+			about the two shaders above.</p>
+			
+			<h4><strong>Vertex Shader and Fragment Shader</strong></h4>
+			<p>So remember earlier in the tutorial I mentioned how OpenGL understands what vertices are and will kind of use that information to 
+			determine what color each pixel should be on the screen? Well we are finally there! These two shader scripts are making it happen! 
+			In a nutshell, the vertex shader happens <strong>per vertex</strong> while the fragment shader happens pretty much <strong>per pixel
+			</strong>. Well the fragments are not actually 1 pixel, sometimes its multiple pixels per fragment or smaller, but you can think of it 
+			as a pixel shader all the same. </p>	
+				
+			<p>So these two scripts are connected in that you're passing vertices to the fragment and it'll make pixels out of it. What actually
+			happens is that when you're passing a variable from vertex to fragment it linearly interpolates it, which means if you have two vertices 
+			it will figure out the values in between them. So if you have two vertices with two colors then it'll be a linear gradient, as opposed to
+			like a spherical one or any other gradients you might have played with in Photoshop or Illustrator. </p>
+			
+				<center>From the vert colors we get linear "guesses"</center>
+				<center><img src="../OpenGL/images/vertfrag.jpg" alt="follow along" style="width:50%;height:50%;"></center>
+				<center><footer>http://www.slideshare.net/champ_yen/opengl-es-2x-programming-introduction</footer></center>	
+		
+			<p> So OpenGL makes use of two entities: the <strong> Vertex Array Object (VAO)</strong> and the <strong>Vertex Buffer Object (VBO)</strong>. 
+			These both act kind of like pointers that hold different sorts of data. In simple terms the VAO holds the state while the VBO holds the data 
+			for the verts. <strong>So we need to remember here that the entry point is the vertex shader.</strong> Let's dive into the details. </p>
+			
+			<p>The <code><strong>attribute</strong></code> variables are basically the input positions of the vertices and serve as inputs to the vertex 
+			shader, or in different words, the thing we will be specifying throuhg OpenGL as a <strong>vertex array</strong>. Essentially this is the 
+			position of the verts. Right now we're only doing position, but you can also add in another attribute variable for other things, like 
+			normals or uvs (just add in another variable with type attribute, vec2 or 3 depending on what you want). </p>
+			
+			<p>You will notice that both scripts use the <code><strong>varying</code></strong> type which basically tells us that it's going from vertex 
+			to fragment. The <code>varying</code> keyword makes the vertex talk to fragment. So this means something different for each shader. The varying 
+			is an output from the vertex shader, while it's an input to the fragment shader. </p> 
+			
+			<p>The <code><strong>precision mediump float</code></strong> specifies the floating point precision, which is required. So here we're doing 
+			a precision of mediump. You see that this is reflected from here on.</p>
+			
+			<p>Finally, we need to use those things and so each function has a main. So lets start with the vertex main. We feed homogonous coordinates 
+			into our fragment shader with <code>oPosition = vec4(position, 1.0)</code>, making it from vec3 to vec4, and the final output of the vertex 
+			shader is the <code><strong>gl_Position</code></strong>, which tells the vertex where it is. In our fragment shader main, <code><strong>
+			gl_FragColor</code></strong> is the final final output of our frag shader, basically telling the screen what color to be. Remember, the whole 
+			goal of everything is to tell this thing "I want this pixel to be this color". So based on position (<code>oPosition</code>), we get a value 
+			in between -1 and 1, but we need to add 1 to it because our actual colors as we discussed earlier (RGBA) are from 0 to 1. Anyways,  We're 
+			going for sort of a rainbow theme here with our shader, as you saw in the picture of the triangle from before. </p>
+			
+		</div>
+		<div id = "8" onclick="window.location.hash='back'; " class = "wrapper">
+			<h3><a href="#top">8</a> More Chores: Shader Functions</h3>
+			<p>We're not done yet! Time to use these scripts. We need two functions: </p>
+			
+			<p>1. <strong>getShader(name)</strong> This first function will do something similar that we did with our canvas element, which is getting 
+			those shader scripts so we can use them. </p>
+			<p>2. <strong>initShaders()</strong> We will then use <code>getShader(name)</code> in this next function, which will initialize the shaders. </p>
+			
+			<p>So lets start with the first function. Add this function after the <code>initGL()</code> function. </p>
+				
+				<div class="info">
+					<code>function getShader(name){<br>
+					<span class = "tab">var shaderScript, shaderSource, currentChild;<br><br>
+					<span class = "tab">shaderScript = document.getElementById(name);<br>
+					<span class = "tab">if(!shaderScript){<br>
+					<span class = "tab"><span class = "tab">return null;<br>
+					<span class = "tab">}<br><br>					
+					<span class = "tab">shaderSource = "";<br>
+					<span class = "tab">currentChild = shaderScript.firstChild;<br><br>
+					<span class = "tab">while(currentChild){<br>
+					<span class = "tab"><span class = "tab">if(currentChild.nodeType == currentChild.TEXT_NODE){<br>
+					<span class = "tab"><span class = "tab"><span class = "tab">shaderSource += currentChild.textContent;<br>
+					<span class = "tab"><span class = "tab">}<br>
+					<span class = "tab"><span class = "tab">currentChild = currentChild.nextSibling;<br>
+					<span class = "tab">}<br><br>
+					<span class = "tab">return shaderSource;<br>
+					}</code>
+				</div>			
+			
+			<p>So similar to our canvas element, we need to get the Shader elements from the DOM, and because we have two, we want to be able to 
+			use the same code for both ids. So it takes in a parameter of <code>name</code> which would be the id we assigned the the shader scripts 
+			in our HTML. So this function essentially walks through the elements in our HTML page and gets the text nodes. So lets step through the
+			chunks of the function.</p>
+				
+				<div class="info">
+					<code><span class = "tab">shaderScript = document.getElementById(name);<br>
+					<span class = "tab">if(!shaderScript){<br>
+					<span class = "tab"><span class = "tab">return null;<br>
+					<span class = "tab">}</code>
+				</div>		
+			
+			<p>So here we are grabbing whatever name is inputted, name as in the id, and input it into the <code>shaderScript</code> variable.
+			In this case we gave our shaders the ids "shader-vs" and "shader-fs". If for some reason we fail to get the id, we will return null.</p>
+			
+				<div class="info">
+					<code><span class = "tab">shaderSource = "";<br>
+					<span class = "tab">currentChild = shaderScript.firstChild;<br><br>
+					<span class = "tab">while(currentChild){<br>
+					<span class = "tab"><span class = "tab">if(currentChild.nodeType == currentChild.TEXT_NODE){<br>
+					<span class = "tab"><span class = "tab"><span class = "tab">shaderSource += currentChild.textContent;<br>
+					<span class = "tab"><span class = "tab">}<br>
+					<span class = "tab"><span class = "tab">currentChild = currentChild.nextSibling;<br>
+					<span class = "tab">}<br><br>
+					<span class = "tab">return shaderSource;</code>
+				</div>					
+			
+			<p>So if we succeed in grabbing the id, we will go through the DOM tree and convert our shader script into the format that you saw 
+			in the previous section. You see how we declare at first an empty string <code>shaderSource</code> and then as we go down the DOM tree
+			we concatenate everything in the script to the string. So essentially the string is made up of everything within the script tag of the 
+			shader who's id we specified. So then we return that string as opposed to null (if it didn't work).</p>
+			
+			<p>Okay, so the next function uses this handy dandy function, and that is the <code>initShaders()</code> function, and if you hadn't already
+			guessed, this function intializes our shaders. Put this function in your js file, you can put it before or after, wherever makes sense.</p>
+			
+				<div class="info">
+					<code>function initShaders(){<br>
+					<span class = "tab">var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);<br>	
+					<span class = "tab">var vertexShader = gl.createShader(gl.VERTEX_SHADER);<br><br>
+					<span class = "tab">var shaderProgram = gl.createProgram();<br><br>				
+					<span class = "tab">gl.shaderSource(fragmentShader, getShader("shader-fs"));<br>
+					<span class = "tab">gl.shaderSource(vertexShader, getShader("shader-vs"));<br><br>
+					<span class = "tab">gl.attachShader(shaderProgram, fragmentShader);<br>
+					<span class = "tab">gl.attachShader(shaderProgram, vertexShader);<br><br>					 
+					<span class = "tab">gl.compileShader(fragmentShader);<br><br>
+					<span class = "tab">if(!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)){<br>
+					<span class = "tab"><span class = "tab">alert("Shader compilation for fragment shader failed.\n"<br>
+					<span class = "tab"><span class = "tab">+ gl.getShaderInfoLog(fragmentShader));<br>
+					<span class = "tab">}<br><br>
+					<span class = "tab">gl.compileShader(vertexShader);<br><br>
+					<span class = "tab">if(!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)){<br>
+					<span class = "tab"><span class = "tab">alert("Shader compilation for fragment shader failed.\n"<br>
+					<span class = "tab"><span class = "tab">+ gl.getShaderInfoLog(vertexShader));<br>
+					<span class = "tab">}<br><br>						
+					<span class = "tab">gl.linkProgram(shaderProgram);<br>
+					<span class = "tab">if(!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)){<br>
+					<span class = "tab"><span class = "tab">alert("Linking program failed\n"<br>
+					<span class = "tab"><span class = "tab">+ gl.getProgramInfoLog(shaderProgram));<br>
+					<span class = "tab">}<br><br>						
+					<span class = "tab">return shaderProgram;<br>
+					}</code>
+				</div>
+				
+			<p>So all of these functions that we are using within this function are part of gl, gl provides these function, which is really nice.
+			So the big verbs here will be creating, attaching, compiling, and finally linking. If you need to visualize it, think about how you link
+			shaders in Maya. Everything else is already taken care of but here we have to do them manually. Lets go through step by step. </p>
+			
+				<div class="info">
+					<code><span class = "tab">var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);<br>	
+					<span class = "tab">var vertexShader = gl.createShader(gl.VERTEX_SHADER);<br><br>
+					<span class = "tab">var shaderProgram = gl.createProgram();</code>
+				</div>
+			
+			<p>So here we are specifying what kind of shader we want to create with each variable. The variable names pretty much tell us what we're 
+			creating. The <code>shaderProgram</code> variable will be a combination of those two shaders, which we'll see in the next chunk of code.</p>
+			
+				<div class="info">
+					<code><span class = "tab">gl.shaderSource(fragmentShader, getShader("shader-fs"));<br>
+					<span class = "tab">gl.shaderSource(vertexShader, getShader("shader-vs"));<br><br>
+					<span class = "tab">gl.attachShader(shaderProgram, fragmentShader);<br>
+					<span class = "tab">gl.attachShader(shaderProgram, vertexShader);</code>
+				</div>
+				
+			<p>So here we are specifying source code to the shader with the first two lines and then in the second we are attaching both to the 
+			shader program.</p>
+			
+				<div class="info">
+					<code><span class = "tab">gl.compileShader(fragmentShader);<br><br>
+					<span class = "tab">if(!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)){<br>
+					<span class = "tab"><span class = "tab">alert("Shader compilation for fragment shader failed.\n"<br>
+					<span class = "tab"><span class = "tab">+ gl.getShaderInfoLog(fragmentShader));<br>
+					<span class = "tab">}<br><br>
+					<span class = "tab">gl.compileShader(vertexShader);<br><br>
+					<span class = "tab">if(!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)){<br>
+					<span class = "tab"><span class = "tab">alert("Shader compilation for fragment shader failed.\n"<br>
+					<span class = "tab"><span class = "tab">+ gl.getShaderInfoLog(vertexShader));<br>
+					<span class = "tab">}</code>
+				</div>	
+			
+			<p>So here we are compiling the shaders and then checking for errors. If it didn't compile successfully we'll send out an alert
+			that also spits out the info log telling us what happened. </p>
+			
+				<div class="info">
+					<code><span class = "tab">gl.linkProgram(shaderProgram);<br>
+					<span class = "tab">if(!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)){<br>
+					<span class = "tab"><span class = "tab">alert("Linking program failed\n"<br>
+					<span class = "tab"><span class = "tab">+ gl.getProgramInfoLog(shaderProgram));<br>
+					<span class = "tab">}<br><br>						
+					<span class = "tab">return shaderProgram;</code>
+				</div>
+			
+			<p>And finally, the final step is linking everything together, which also has an error check. After everything is through we return the 
+			shaderProgram object. </p>
+			
+			<p>Now let's use them in my <code>initGL()</code> function: </p>
+				
+				<div class="info">
+					<code><span class = "tab">gl.viewport(0, 0, canvas.width, canvas.height);<br>
+					}<br><br>
+					<strong>var program = initShaders();<br>
+					gl.useProgram(program);<br><br>
+					var positionAttributeLocation = gl.getAttribLocation(program, "position");<br>
+					gl.enableVertexAttribArray(positionAttributeLocation); </strong><br><br>
+					return gl;</code>
 				</div>		
 				
-			<p>After you've saved and refreshed the HTML page you can see that you've got a button! Sweet! </p>
-			<center><img src="../stylesheets/button.png" alt="follow along" style="width:50%;height:50%;"></center>
+			<p>So the first two lines we are actually initializing our shaders by running the function and getting a program object and then
+			in the second line setting it so we can use it for rendering. In the next line we are getting our variable position attribute
+			location finally making it a vertex shader variable in the last line. </p>
 			
-			<p>But again, it probably didn't take you long to figure out that 
-			that's all it is, a button. Clicking on it does absolutely nothing. Remember that an HTML file is basically the web page version of a text 
-			file. So while we have want we want visually there's no functionality. Well Javascript can help us with that. Onward bb! </p> 
-		</div>
-		<div id = "6" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>6 Getting Information you want from the API: Javascript </h3>
-			<p>So create a text file and rename it to riotApiTest with, but this time with a .js extension instead of an .html extension (riotApiTest.js) 
-			and fill it with this: </p>
-				<script src="https://gist.github.com/rostun/1587b64f48088eeba5c2.js"></script>
-			
-			<p>So let's look at what we have here. Essentially, this entire thing is a function called <code>searchSummoner</code>. Functions are basically 
-			like actions, they do things. The names we give functions usually represent what we want them to do. Remember our button? When we click it, 
-			we want something to happen. We want Riot to look up a summoner name and give us some information. So <code>searchSummoner()</code> seems like 
-			an appropriate name. </p>
-			
-			<p>However, you can't ask riot to search for a summoner name without giving them that name. That means another action, or function, is needed. 
-			So while we ask Riot to search a summoner for us, we have to somehow get them the summoner's name the user inputs. So calling the funciton 
-			<code>getSummoner()</code> seems like a pretty good name for that action. We don't actually know what that name is YET, but we can do this 
-			thing where we allocate a slot for it, which will allow us to fill it in later. This is called declaring a variable. In this case our variable 
-			is called <code>aPromisedName</code>. Let's look at what is inside this mini <code>getSummoner()</code> action. </p>
-			<div class="info">
-					<p>
-						<strong><code>return</code></strong> <br>
-						<strong><code>document.getElementById('aPromisedName').value</code></strong>
-					</p>
-			</div>		
-			
-			<p><strong><code>document.getElementById('aPromisedName').value</code>:</strong> This is basically going into the HTML document we created earlier, 
-			taking whatever summoner name the user gives us, and putting it into the slot <code>aPromisedName</code> we made earlier.</p>
-			
-			<p><strong><code>return</code>:</strong> So every function can return something. A function is like a factory. If you start <code>getSummoner()</code>, 
-			it will execute whatever directions it is given and then at the end, hopefully, have something it produces. In this case, as you can see in line 5, 
-			we execute <code>getSummoner()</code> once, and store whatever it produces into a slot called <strong><code>summonerName</code></strong>. 
-			
-			<p>So, in this case, we're hoping the <code>getSummoner()</code> factory gives us a summoner name! There is a way to see what is in our slots. We can 
-			use the <code>console.log()</code> command to output to the console whatever is contained in the parenthesis. In our case, we want to see what's in 
-			<code>summonerName</code> to make sure we've got what we want. </p>
-			
-			<p>To access the console from your browser, right click on your page and click on inspect. This will bring up a window where you can see what your 
-			web page is made out of. You'll probably be in the Elements tab, where you can see your HTML source code, if you switch to the <strong>Console</strong> 
-			tab you will see the console!</p>
-			
-			<p>Unfortunately, unlike HTML, we can't just open up a .js file in browser and see what's up. So to test our .js file we need to do it through our HTML 
-			file. Let's add these functionalities to our two inputs from before, the text block and the button!</p> 
-		</div>	
-		<div id = "7" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>7 Add Functionality to your Webpage </h3>
-			<p> So we need to add two things to our HTML file to link it up to those functions we made in the JS file. One for the text input and one for the button input. </p>
-			
-			<p> Add the bolded portion to the lines in your HTML file </p>
-			<div class="info">
-					<p>
-						<code>Enter Summoner Name: &ltinput type="text" <strong>id="aPromisedName"</strong>/&gt</code>
-					</p>
-			</div><br>				
-			<div class="info">
-					<p>
-						<code>&ltinput type="button" value="Search Summoner" <strong>onclick="searchSummoner()"</strong>/&gt</code>
-					</p>
-			</div>					
-			
-			<p>So remember that <code>getSummoner()</code> is a function whose action is to get the <strong>future</strong> user input, and we set up a slot for it, called
-			<code>aPromisedName</code>. What do we want to put in that slot? Whatever the user inputs into this text box. Thus one connection is set up! </p>
-			
-			<p>All that is left is to connect the button to the <code>searchSummoner()</code> action. Once the user clicks this button, we're assuming that their summoner
-			name is in that text box, ready to be put into the "<code>aPromisedName</code>" slot.</p>
-			
-			<p>You might have been super excited and went ahead and opened up your html file, put in your summoner name, clicked dat button, but then saw this in your console: </p>
-			<center><img src="../stylesheets/notDefined.png" alt="follow along" style="width:75%;height:75%;"></center>
-			
-			<p>So here what the HTML universe is trying to tell us is that <code>searchSummoner()</code> doesn't exist. Well, <strong>we</strong> know that 
-			<code>searchSummoner()</code>exists, because we wrote it ourselves! It's right there in that JS file we wrote! Oh wait...did we ever tell them that?</p>
-			
-			<p>Oops! We never did. Well, let's tell them. Giving files access to other files is sort of like putting down an x mark on a treasure map. You just give a name 
-			and mark the location somewhere in your file. In our case, we don't need to give a location because our JS file is in the same folder as our HTML file
-			(<strong>if not, do that now</strong>). That is sort of like it being within visual distance. So add the bolded line in your HTML file.</p>
-			<div class="info">
-					<p>
-						<code>&lt/div&gt</code><br>
-						<strong><code>&ltscript src="riotApiTest.js"&gt&lt/script&gt</code></strong>
-					</p>
-			</div>
-			
-			<p>If our JS file wasn't in the same folder, say it was somewhere else in our computer, that means we would have to be more specific and add some more hints on 
-			where it's located, something like this: </p>
-			<div class="info">
-					<p>
-						<code>&lt/div&gt</code><br>
-						<strong><code>&ltscript src="../someFolder/riotApiTest.js"&gt&lt/script&gt</code></strong>
-					</p>
-			</div>			
-			
-			<p>Finally, let's see what we have so far side by side. </p>
-			<script src="https://gist.github.com/rostun/030d95a6e32d0146ab10.js"></script>
-			<script src="https://gist.github.com/rostun/1587b64f48088eeba5c2.js"></script>
-			
-			<p>So everything is linked up, and now we might be able to see something output onto the console to prove that the user input is indeed being passed around 
-			successfully. <strong>Note that the format the API expects is the lowercase and no spaces version of your summoner name. We will learn how to deal
-			with other version of your summoner name later on.</strong></p>
-			<center><img src="../stylesheets/consoleLogSuccess.png" alt="follow along" style="width:75%;height:75%;"></center>
-			
-			<p>Great, we now have a summoner name to give to the Summoner Look Up API!</p>
-			
-		</div>		
-		<div id = "8" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>8 Calling Riot's API and Object Oriented Design</h3>
-			
-			<p>It might seem like a long time since we tested our API key, but let's try to pick up where we left off and carry out that call we made over to this
-			setting. To do that, we need to send an HTTP request, like we did when we popped in the request into our browser to test our API key. To accomplish
-			that through Javscript there are four basic steps. We actually have to use another API to do this!</p>
-			<ul id = "navlist">
-				<li>Create an instance of an API called XMLHttpRequest.</li>
-				<li>Open a URL</li>
-				<li>Send the request</li>
-				<li>Do something with what we got back</li>
-			</ul>
-			<p>This is probably an appropriate time to talk about the concept of an <strong>Object</strong> and <strong>Object Oriented Design</strong>. This is all purely 
-			conceptual. You can just think of an object as a normal object. Something that has attributes and we might be able to use it to do things. What we got back from 
-			the Summoner Look Up API is an object, because it holds data. You saw that within it it contained several bits of information. We can't really do anything with 
-			that kind of object except extract information from it. Now the XMLHttpRequest Object on the other hand, we can, as you will see soon.</p>
-			
-			<p>Object Oriented Design is when the design is centered around this organizing things into objects and using them as so. That's all, nothing complicated. </p>
-			
-			<p>Anyways, once we create this instance of XMLHttpReauest (which is an object) we can use it to do things. By definition, we can use it to exchange data with a server. 
-			What we are trying to accomplish is just that, we are going to use it to get what we got when we tested our API. If you need a refresher, this is our end game: </p>
-			<center><img src="../stylesheets/testAPISuccess.png" alt="follow along" style="width:100%;height:100%;"></center>
-			
-			<p>Let's translate the steps above to how we'll do them in Javascript</p>
-			
-			<h4>1. Create an instance of an API called XMLHttpRequest</h4>
-			<div class="info">
-					<p>
-						<strong><code>var req = new XMLHttpRequest();</code></strong><br>
-					</p>
-			</div>	
-			<p>Here we create an instance of <code>XMLHttpRequest()</code> and store it in a slot called <code>req</code>. This is our object that we're going to be able to
-			do things with.
-			
-			
-			<h4>2. Open a URL</h4>
-			<div class="info">
-					<p>
-						<strong><code>req.open("GET", "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/" + summonerName + "?api_key=your_api_key", true); </code><br></strong>
-					</p>
-			</div>	
-			<p>Does part of this line look familiar? Part of this looks a lot like the address we put in to test our Api Key. </p>
-			<center><img src="../stylesheets/testAPI.png" alt="follow along" style="width:100%;height:100%;"></center>
-			
-			<p>However, there is a difference between the request we want to send and the request we sent before. We want this request to take in the summoner name that 
-			the user input, so therefore, we need to break apart our request and add in that variable, hence we get that new format.</p>
-			
-			<p>So overall <code>req</code>, the object we're working with, has the ability to <code>open</code> something. It allows us to give three specifications to 
-			describe the thing we want to open. The second specification, you can probably already guess, is the URL. </p>
-			
-			<p> As for the other specifications, they're not too relevant, but you can certainly look them up to get a better understanding. </p>
-			<ul>
-				<li><a href="http://www.w3schools.com/tags/ref_httpmethods.asp">1st Specification: GET and POST</a></li>
-				<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests">3rd Specification: Synchronous vs Asynchronous</a></li>
-			</ul>
-			<p>The Quickie Explanation:</p>
-			
-			<h4>GET and POST</h4>
-			<p>When you make a GET request, you're basically saying "I am but a humble observer". You're only interested in receiving information. You want to find
-			out what games are going on, how many wards are being placed, what your summoner level is. When you submit your request to Riot, all they have to give
-			you is information that they already have. POST is the opposite. When you make a POST request you need the receiver to save or process your request, or 
-			maybe even create something new from it. Anyways, Rito don't got time for dat, so GET it is. </p>
-			<center><img src="../stylesheets/nobody.png" alt="follow along" style="width:40%;height:40%;"></center>
-			
-			<h4>Synchronous vs Asynchronous?</h4>
-			<p>The third specification does not matter in this case, but it would if we were doing multiple requests. What if we wanted to find out a bunch
-			of things out at once? Are we going to wait for one request to finish before starting the next? Imagine you are in a queue to get a movie ticket. 
-			You can't get one until everyone before you has gotten one. That is what <strong>synchronous</strong> means. Usually, we want the opposite, aka an 
-			Asynchronous request, which is what the <strong>true</strong> value means. <strong>Asynchronous Execution</strong> is like being at a restaurant
-			with many other people. Everyone's meals can be made at the same time, and the meals come out as they're done. We don't want one call holding up
-			another when we make requests. However, in some situations, it might be important for one call to be finished first. Then we might change this value.
-			But for now, it doens't matter. </p>
-			
-			<h4>Let's not lose the bigger picture</h4>
-			
-			<p>So unofficially, this line is equivalent to us putting the request in the browser. We're not doing anything with it yet, it's just there all nice
-			and ready for something to happen to it. </p>
-			
-			<h4>3. Send the Request</h4>
-			<div class="info">
-					<p>
-						<code>req.send();</code><br>
-					</p>
-			</div>	
-			<p>Now THIS is when we press the enter key. If you were sending in a POST request you would have something included in the paranthesis, however, right
-			now you're just basically calling Riot, hoping they'll send you some info. </p>
-			
-			<h4>4. Do something with what we got back</h4>
-			<div class="info">
-					<p>
-						<code>req.addEventListener('load', function(){console.log(req.responseText);}); </code><br>
-					</p>
-			</div>	
-			
-			<p>This is our final step. What <code>addEventListener</code> does is basically do something when an event happens. The event could be anything.
-			It could be a click, when something is moused over, anything. Well, we want to do something on <code>'load'</code>, aka when we get our info! 
-			Remember when we said that a function was like an action. We want the action to execute on <code>'load'</code>. Right now all that function is
-			doing is outputting <code>responseText</code> to the console, which is Riot's response to our request. </p>
-			<center><img src="../stylesheets/responseText.png" alt="follow along" style="width:100%;height:100%;"></center>
-			<p>Here is what your JS file should look like at this point: </p>
-			<script src="https://gist.github.com/rostun/f772087b9a7836fd60ce.js"></script>
-			
-			<p>So now we've caught up to where we were before. We can get into the real meat, which is extracting what we want from this JSON object we got</p>
 		</div>
 		<div id = "9" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>9 JSON Objects</h3>
-			<p>According to the Riot Game's Developer getting started guide, their API's return JSON data. This means that you can use any programming 
-			language that has the ability to manipulate JSON objects, not just Javascript, like we're doing here. </p>
+			<h3><a href="#top">9</a> Learn the first quad, learn them all!</h3>
+			
+			<p>So you probably refreshed the page again and are like "I still can't see anything!" Well remember remember how we talked about 
+			the <strong>Vertex Array Object</strong> and <strong>Vertex Buffer Object</strong>? The array part has been taken care of (see 
+			previous section) so all that's left is this buffer part bb! Here is the function where we'll construct an object to "appear" on 
+			the canvas. I'm sure your mind is already racing, thinking of all the possibilities and things we could make! Well for this guide
+			we're going to start with... </p>
+			
+				<center><img src="../OpenGL/images/bigdan.png" alt="follow along" style="width:75%;height:75%;"></center>			
+			
+			<p>No, not the person, this thing</p>
+			
+				<center><img src="../OpenGL/images/bigdan1.png" alt="follow along" style="width:50%;height:50%;"></center>
+			
+			<p>Maybe it seems lame, but hey, this is a getting started guide and you gotta start somewhere! A quad is appropriate since
+			even the most complicated models are made out of quads (and broken down into tris at runtime). So go ahead and pop this baby
+			after the other functions we just wrote. </p>
+				
+				<div class="info">
+					<code>function initBuffers(){<br>
+					<span class = "tab">var quadBuffer = gl.createBuffer();<br><br>
+					<span class = "tab">gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);<br><br>
+					<span class = "tab">var vertices = [<br>
+					<span class = "tab"><span class = "tab"> 1.0,  1.0, 0.0, //0<br>
+					<span class = "tab"><span class = "tab">-1.0,  1.0, 0.0, //1<br>
+					<span class = "tab"><span class = "tab">-1.0, -1.0, 0.0, //2<br>
+					<span class = "tab"><span class = "tab"> 1.0, -1.0, 0.0  //3<br>
+					<span class = "tab">];<br><br>
+					<span class = "tab">gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);<br><br>
+					<span class = "tab">var indexBuffer = gl.createBuffer();<br>
+					<span class = "tab">gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);<br><br>
+					<span class = "tab">var indices = [2, 1, 0, 3, 2, 0];<br><br> 
+					<span class = "tab">gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);<br><br>
+					<span class = "tab">var buffers = {vbo:quadBuffer, ibo:indexBuffer};<br>
+					<span class = "tab">return buffers;<br>
+					}</code>
+				</div>	
+				
+			<p></p>
+			
+				<div class="info"><br>
+					<code><span class = "tab">var quadBuffer = gl.createBuffer();<br><br></code>
+				</div>
+			
+			<p></p>
 
-			<p>So when we say JSON Object, what does that mean. Well, JSON stands for <strong>JavaScript Object Notation</strong>. That is exactly what
-			it is. A type of notation. For JSON objects, everything is organized in pairs. Here is a most basic JSON Object: </p>
-			
-			<div class="info">
-					<p><strong>
-						<code>{"summonerLevel": 30} </code><br></strong>
-					</p>
-			</div>				
-			
-			<p>So you can see that <code>summonerLevel</code> corresponds with the number 30. The data on the left is called the <strong>key</strong> and every key 
-			has an associated <strong>value</strong>, which is the data that comes after the colon. Depending on the data type, you may or may not need quotes. So for 
-			numbers you don't, but for words you do. So here <code>summonerLevel</code> is the key and <code>30</code> is the value. If we want to add another paid,
-			we can! Just make sure all your pairs are separated by commas. </p>
-			<div class="info">
-					<p><strong>
-						<code>{"summonerLevel": 30, "summonername":"missPapaya"} </code><br></strong>
-					</p>
-			</div>	
-			
-			<p>But what about something more complicated, like the JSON object we received back from the API? Well, the same rule applies, everything is still in 
-			pairs! It's just the value happens to be a pair itself. Let's take a look at it below: </p>
-			<div class="info">
-					<p><strong>
-						<code>{"misspapaya": <br>
-								<span class = "tab"></span>{<br>
-								<span class = "tab"></span><span class = "tab"></span>"id":22977975,<br>
-								<span class = "tab"></span><span class = "tab"></span>"name":"missPapaya",<br>
-								<span class = "tab"></span><span class = "tab"></span>"profileIconId":983,<br>
-								<span class = "tab"></span><span class = "tab"></span>"summonerLevel":30,<br>
-								<span class = "tab"></span><span class = "tab"></span>"revisionDate":1451798706000<br>
-								<span class = "tab"></span>}<br>
-							} </code><br></strong>
-					</p>
-			</div>
-			
-			<p>So here we have one pair, <code>{"missPapaya":{stuff}}</code>. That second part that we called <code>stuff</code> is consisted of multiple pairs. 
-			Conceptually, this means that all these pairs are associated with <code>"missPapaya"</code>. We could even add in more summoners with their own pairs,
-			but, afterall we only asked for one summoner. </p>
-			
-			<p>So how do we take this JSON object and break it down in a way where we separate out all the elements in a usable form? As far as the machine knows,
-			this is just a jumble of words. We need to <strong>parse</strong> the data once we receive it! Add this bolded line to your js function. </p>
-			<div class="info">
-					<p>
-						<code>	req.addEventListener('load', function(){ <br>
-										<span class = "tab"></span>console.log(req.responseText); <br>
-										<strong><span class = "tab"></span>var response = JSON.parse(req.responseText); <br></strong>
-										<strong><span class = "tab"></span>console.log(response);<br></strong>
-									});	
-						</code><br>
-					</p>
-			</div>				
-			
-			<p>So like we said, parse whatever Riot gave us, and then see what we get! You should get back an actual Object with all the elements correctly
-			organized, nested, and accessible if you expand response.</p>
-			<center><img src="../stylesheets/object.png" alt="follow along" style="width:100%;height:100%;"></center>
-		</div>
-		<div id = "10" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>10 Accessing JSON Objects</h3>
-			<p>There are actually two ways to access JSON Objects. One is with dot notation, and another is with bracket notation. Which one should we use?
-			Test these two bolded lines out. </p>
-			<div class="info">
-					<p>
-						<code>	req.addEventListener('load', function(){ <br>
-										<span class = "tab"></span>console.log(req.responseText); <br>
-										<span class = "tab"></span>var response = JSON.parse(req.responseText); <br>
-										<span class = "tab"></span>console.log(response);<br>
-										<strong><span class = "tab"></span>console.log(response.misspapaya.id);<br></strong>
-										<strong><span class = "tab"></span>console.log(response["misspapaya"]["id"]);<br></strong>
-									});	
-						</code><br>
-					</p>
-			</div><br>
-			<p>You should see something like this in your console</p>
-			<center><img src="../stylesheets/nodifference.png" alt="follow along" style="width:100%;height:100%;"></center>
-			
-			<p>So as you can see, there is no difference. The only difference is in the notation. <code>response.misspapaya.id</code> doesn't use quotes on the key, and 
-			<code>response["misspapaya"]["id"]</code> uses quotes on the key. However, remember the only form of our summoner name we have is in a container called 
-			<code>aPromisedName</code>. We'll talk about how to deal with that later. </p>
-			
-			<p>So even though things are appearing in the console log, they're not appearing on our HTML page. How did we do this last time? Remember
-			<code>document.getElementById().value</code>? We used up to open a portal to that text the user inputted. This time we want to open up a 
-			portal again, put place a value in the text input. So instead of grabbing it with <code>return</code> we want to set it with <code>
-			response.misspapaya.id</code> or <code>response["misspapaya"]["id"]</code>. But what goes in the paranthesis? Not <code>aPromisedName</code>,
-			we need more slots! Let's do that first. Add the bolded portions to your HTML file: </p>
-			<div class="info">
-					<p>
-						<code>&lth3&gtBasic Summoner Object&lt/h3&gt<br>
-							&ltul style="list-style-type:none"&gt<br>
-								<span class = "tab"></span>&ltli&gt&ltstrong&gt Name: &lt/strong&gt <strong>&ltspan id="name"&gt&lt/span&gt</strong>&lt/li&gt<br>
-								<span class = "tab"></span>&ltli&gt&ltstrong&gt ID: &lt/strong&gt <strong>&ltspan id="id"&gt&lt/span&gt</strong>&lt/li&gt<br>
-								<span class = "tab"></span>&ltli&gt&ltstrong&gt Level: &lt/strong&gt <strong>&ltspan id="summonerLevel"&gt&lt/span&gt </strong>&lt/li&gt<br>
-								<span class = "tab"></span>&ltli&gt&ltstrong&gt Profile Icon Id: &lt/strong&gt <br>
-								<strong><span class = "tab"></span>&ltspan id="profileIconId"&gt&lt/span&gt</strong>&lt/li&gt<br>
-								<span class = "tab"></span>&ltli&gt&ltstrong&gt Revision Date: &lt/strong&gt <br>
-								<strong><span class = "tab"></span>&ltspan id="revisionDate"&gt&lt/span&gt </strong>&lt/li&gt<br>
-							&lt/ul&gt
-						</code><br>
-					</p>
-			</div><br>
-			<p>If you're getting cross eyed from reading that, here is the entire HTML file in all it's glory and final form </p>
-			<script src="https://gist.github.com/rostun/2e23ebe09aed5c4f98a7.js"></script>
-			
-			<p>So now we have 5 things to fill: <code>name, id, summonerLevel, profileIconId, and revisionDate</code>. Great, now let's fill in those values in our JS file:</p> 
-			<div class="info">
-					<p>
-						<code>
-						<span class = "tab"></span>console.log(response.misspapaya.id);
-						<strong><span class = "tab"></span>document.getElementById('id').textContent = response.misspapaya.id;
-						<span class = "tab"></span>document.getElementById('name').textContent<br> 
-						<span class = "tab"></span>= response.misspapaya.name;
-						<span class = "tab"></span>document.getElementById('profileIconId').textContent<br> 
-						<span class = "tab"></span>= response.misspapaya.profileIconId;
-						<span class = "tab"></span>document.getElementById('summonerLevel').textContent<br> 
-						<span class = "tab"></span>= response.misspapaya.summonerLevel;
-						<span class = "tab"></span>document.getElementById('revisionDate').textContent<br> 
-						<span class = "tab"></span>= response.misspapaya.revisionDate;<br></strong>
-						});	</code><br>
-					</p>
-			</div><br>			
-			
-			<p>Now if you run your page, all those elements will appear on your html page! Woohoo it looks like we are done! Or are we...</p>
-			<center><img src="../stylesheets/working.png" alt="follow along" style="width:60%;height:60%;"></center>
-			
-			<p>If you've tried to put in any other name in the text input besides your summoner name, you'll soon realize that, while we passed in <strong>our</strong> 
-			summoner name, we didn't actually pass it in through our input text slot called <code>aPromisedName</code>. That's because we directly wrote in our summoner 
-			name when extracting it from the object, which is not what happens IRL. How can we fix this? </p>
-			</div>
-			<div id = "11" onclick="window.location.hash='back'; " class = "wrapper">
-				<h3>11 Accessing JSON Objects with a Variable</h3>
-				<p>The first thing you probably did was straight substitution, like seen below:</p>
-				<div class="info">
-						<p>
-							<code>	req.addEventListener('load', function(){ <br>
-											<span class = "tab"></span>console.log(req.responseText); <br>
-											<span class = "tab"></span>var response = JSON.parse(req.responseText); <br>
-											<span class = "tab"></span>console.log(response);<br>
-											<strong><span class = "tab"></span>console.log(response.aPromisedName.id);<br></strong>
-											<strong><span class = "tab"></span>console.log(response["aPromisedName"]["id"]);<br></strong>
-										});	
-							</code><br>
-						</p>
-				</div>
-				<p>However, immediately upon refreshing the page you get an error on line 20</p>
-				<center><img src="../stylesheets/unexpectedString.png" alt="follow along" style="width:60%;height:60%;"></center>
+				<div class="info"><br>
+					<code><span class = "tab">gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);}<br><br></code>
+				</div>	
 				
-				<p>Well then that tells us that <code>response.aPromisedName.id</code> isn't going to work. This is because they are searching, not for what's in our <code>
-				aPromisedName</code> slot, but our actual slot <strong>name</strong>. But wait! Our <code>console.log(response["aPromisedName"]["id"])</code> didn't give us
-				an error! Maybe we can use that! Unfortunately, even if that made it a bit farther, if we delete the dot notation console.log and input our summoner name 
-				and try to request the information, we get this:
-				<center><img src="../stylesheets/undefinedString.png" alt="follow along" style="width:60%;height:60%;"></center>
-				<p>which is basically another way of saying the same thing as before. So it seems like we're really in a pickle here. We need to find a way to pass what is in
-				<strong><code>aPromisedName</code></strong>, not the actual name of our slot. 
-				
-				<p>In the end, what we need is a combination of the dot and bracket notation. The bracket notation can recognize our slot <code>aPromisedName</code> if we feed 
-				it in by a different format; the one without the quotes. When we do this, it doesn't intepret the name of the variable, but rather it goes a level deeper and 
-				gets the name that is located in the slot. Try this out: </p>
+			<p></p>
+			
 				<div class="info">
-						<p>
-							<code>	req.addEventListener('load', function(){ <br>
-											<span class = "tab"></span>console.log(req.responseText); <br>
-											<span class = "tab"></span>var response = JSON.parse(req.responseText); <br>
-											<span class = "tab"></span>console.log(response);<br>
-											<strong><span class = "tab"></span>console.log(response[aPromisedName]["id"]);<br></strong>
-										});	
-							</code><br>
-						</p>
+					<code><span class = "tab">var vertices = [<br>
+					<span class = "tab"><span class = "tab"> 1.0,  1.0, 0.0, //0<br>
+					<span class = "tab"><span class = "tab">-1.0,  1.0, 0.0, //1<br>
+					<span class = "tab"><span class = "tab">-1.0, -1.0, 0.0, //2<br>
+					<span class = "tab"><span class = "tab"> 1.0, -1.0, 0.0  //3<br>
+					<span class = "tab">];</code>
 				</div>
 				
-			<p>With this, we get the id of any lowercase connected summoner name! We can change our previous lines to this new and better format: </p>
-			<div class="info">
-					<p>
-						<code>
-						<span class = "tab"></span>console.log(response.misspapaya.id);
-						<span class = "tab"></span>document.getElementById('id').textContent <br>
-						<span class = "tab"></span>= <strong>response[aPromisedName]["id"];</strong>
-						<span class = "tab"></span>document.getElementById('name').textContent<br> 
-						<span class = "tab"></span>= <strong>response[aPromisedName]["name"];</strong>
-						<span class = "tab"></span>document.getElementById('profileIconId').textContent<br> 
-						<span class = "tab"></span>= <strong>response[aPromisedName]["profileIconId"];</strong>
-						<span class = "tab"></span>document.getElementById('summonerLevel').textContent<br> 
-						<span class = "tab"></span>= <strong>response[aPromisedName]["summonerLevel"];</strong>
-						<span class = "tab"></span>document.getElementById('revisionDate').textContent<br> 
-						<span class = "tab"></span>= <strong>response[aPromisedName]["revisionDate"];<br></strong>
-						});	</code><br>
-					</p>
-			</div><br>	
+			<p></p>
 			
-			<p>Everything works! But there is one thing that might have bugged you throughout this entire guide. Why do we need to convert our summmoner name
-			to lowercase and one word? This is because that is how Riot stores your summoner name in the database.</p>
-			</div>	
-		</div>
-		<div id = "12" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>12 Summoner Name Creation Rules</h3>
-			<center><img src="../stylesheets/creationRules.png" alt="follow along" style="width:100%;height:100%;"></center>
+				<div class="info"><br>
+					<code>gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);<br><br></code>
+				</div>
+				
+			<p></p>
+
+				<div class="info">
+					<code><span class = "tab">var indexBuffer = gl.createBuffer();<br>
+					<span class = "tab">gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);<br><br>
+					<span class = "tab">var indices = [2, 1, 0, 3, 2, 0];<br><br> 
+					<span class = "tab">gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);</code>
+				</div>
 			
-			<p>This random person puts it nicely. So in the end, even if our summoner name is <strong>CraZy SummonerName W ith Spaces</strong>, that is not
-			how it Riot sees it.</p>
+			<p></p>
 			
-			<p>But in the end, that is not common knowledge, and if you're building a website for the average person chances are if their summoner name is 
-			missPapaya in game with a capital, that is what they will try to search. If you put in your name and it has capital letters, it will actually be
-			stored that way as your "name" key. So actually we need to make three changes to our JS file: </p>
-			<div class="info">
-					<p>
-						<code>
-								var summonerName = getSummoner(); //store user input <br>
-								<strong>summonerName = summonerName.toLowerCase().trim();<br> 
-								summonerName = summonerName.replace(" ", "");</strong><br>
-						</code>
-					</p>
-			</div>			
+				<div class="info">
+					<code><span class = "tab">var buffers = {vbo:quadBuffer, ibo:indexBuffer};<br>
+					<span class = "tab">return buffers;</code>
+				</div>				
 			
-			<p>So three things: <code><strong>toLowerCase(), trim(), .replace(" ", "")</code></strong>. <code>toLowerCase()</code> is self explanatory, it will 
-			change all the character of whatever object to lower case. <code>trim()</code> makes sure to get rid of any pesky spaces a user might accidentally put at 
-			the beginning or end of their text input. Finally, <code>.replace(" ", "")</code> will get rid of all the spaces <strong>in</strong> the username that is
-			entered. This way, even if a player enters in their actual in game username, by the time we make the request, Riot will have the real username to look up
-			in their hands. Your JS file in the end looks like this: </p>
-			<script src="https://gist.github.com/rostun/0a29b2dbb1824463c67c.js"></script>
+			<p></p>
+			
+				<div class="info">
+					<code><span class = "tab">var buffers = {vbo:quadBuffer, ibo:indexBuffer};<br>
+					<span class = "tab">return buffers;</code>
+				</div>	
+			
+			<p></p>
+			
+				<div class="info">
+					<code>gl.enableVertexAttribArray(positionAttributeLocation);<br><br>
+					<strong>var buffers = initBuffers();<br>
+					gl.vertexAttribPointer(positionAttributeLocation, 3, gl.FLOAT, false, 0, 0);<br><br>
+					gl.bindBuffer(gl.ARRAY_BUFFER, buffers.vbo);<br>
+					gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ibo);<br><br>
+					gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);<br><br></strong>
+					return gl;</code>
+				</div>	
+			
+			<p></p>
+			
+				<div class="info">
+					<code>var buffers = initBuffers();<br>
+					gl.vertexAttribPointer(positionAttributeLocation, 3, gl.FLOAT, false, 0, 0);</code>
+				</div>	
+
+			<p></p>
+			
+				<div class="info">
+					<code>gl.bindBuffer(gl.ARRAY_BUFFER, buffers.vbo);<br>
+					gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ibo);</code>
+				</div>
+				
+			<p></p>
+			
+				<div class="info"><br>
+					<code>gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);<br><br></code>
+				</div>
+			
+			<p></p>
+			<center><img src="../OpenGL/images/startIndex.png" alt="follow along" style="width:75%;height:75%;"></center>
+			
+				<center><img src="../OpenGL/images/error.png" alt="follow along" style="width:75%;height:75%;"></center>
+			
+			<p>Do the viewport example here</p>
+			
+				<center><img src="../OpenGL/images/viewport.png" alt="follow along" style="width:75%;height:75%;"></center>
+				
+			<script src="https://gist.github.com/rostun/664db2b5c7ce0905d626132b0cdc126c.js"></script>
 			
 		</div>		
-		<div id = "13" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>13 The Riot API Universe and JSON Arrays</h3>
-			<center><img src="../stylesheets/apiRef.png" alt="follow along" style="width:100%;height:100%;"></center>
-			
-			<p>After all that, we've only really explored on API request, however, now that you know how to extract data from JSON objects and make variables
-			to fill in the varying information that the APIs ask for, you can apply this knowledge to all the other APIs. If you take a look at the API 
-			reference page, you'll see them listed, and you'll be able to expand a section just to display the description by clicking "List Operations" like this: </p>
-			<center><img src="../stylesheets/apiRefExpand.png" alt="follow along" style="width:100%;height:100%;"></center>
-			
-			<p>You'll see that <code>api/lol/{region}/v1.2/champion</code> takes in one specification, the region. Actually for our Summoner Look Up Api you were also able to 
-			specify this, and we could if we made another variable to input it. However, we only specified the summoner name, so you saw that the default {region}
-			for us was "na", which is where we are. </p>
-			
-			<p>You might be looking at this <code>api/lol/{region}/v1.2/champion</code> and thinking "hm, this doesn't look like all of it! We were working with something that 
-			started with a http, and a..." Yep, you're right, it isn't all of it. You might be able piece it together yourself, but if you're having trouble just do this. 
-			Expand it further by clicking "Expand Operations", it should look like this: </p>
-			<center><img src="../stylesheets/apiRefExpandMore.png" alt="follow along" style="width:100%;height:100%;"></center>
-			
-			<p>You'll see a section where you can actually test it out to get the response, request, and a whole bunch of stuff!</p>
-			<center><img src="../stylesheets/showChampionsFreetoPlay.png" alt="follow along" style="width:100%;height:100%;"></center>
-			
-			<p>You might notice that this JSON object you get back as square brackets on top of curly brackets. wwwwhhhatttt???!</p>
-			
-			<h4>Don't be a Fray of JSON Array</h4>
-			
-			<p>The way you access JSON arrays is simple, let's take a look at a simplified version of the champion-v1.2 API with the same structure: </p>
-			<div class="info">
-					<p>
-						<code>
-							{"somePersonsSummonerName":[{"name":"annie", "name":"zyra", "name":"gnar"}]}
-						</code>
-					</p>
-			</div>				
-			
-			<p>Say we want to access Gnar's name. Well, this is what we would do: </p>
-			<div class="info">
-					<p>
-						<code>
-							response[aPromisedName][2]["name"];
-						</code>
-					</p>
-			</div>
-			<p>As you see, when we reach a key with an array (aka the left is encompassed in sqare brackets) we can navigate to whichever paid we want to 
-			by specifying the number. Why not put 3 in to get gnar? Because in computer land, things start at 0. The "first" element of an array is "0".</p>
-			
-			<p>Here is a JS function that outputs the first champions id out onto the console that you can try out.</p>
-			<script src="https://gist.github.com/rostun/ea05ade0209228e31ad8.js"></script>
-		</div>	
-		<div id = "14" onclick="window.location.hash='back'; " class = "wrapper">
-			<h3>14 The Pep Talk</h3>
-			<p>If you are a beginner and have been following along, you've gotten a good start to working with API's. Learning anything can be sort of a 
-			trial and error sort of process. You will write a lot of thigns you don't end up using. I mean, Look what I had to got through to write this guide!</p>
-			<script src="https://gist.github.com/rostun/0a7489ec84c2454c4855.js"></script>
-			
-			<p>Anyways, remember, if you get stuck, the internet is your best friend! So, Good Luck in the Fields of JSON!</p>
-			<center><img src="../stylesheets/glhf.png" alt="follow along" style="width:75%;height:75%;"></center>
+		<div id = "10" onclick="window.location.hash='back'; " class = "wrapper">
+			<h3><a href="#top">10</a> Model View Matrix and Camera View </h3>
+			<center><img src="../OpenGL/images/perspectvsortho.png" alt="follow along" style="width:75%;height:75%;"></center>
+			<script src="https://gist.github.com/rostun/aa1b99f4b7f157554ef834614c89609a.js"></script>
+			<script src="https://gist.github.com/rostun/244c8495cbc5f1afb83d7847e9c4b567.js"></script>
 		</div>
 		<div>
 			cupcake bullet by blueberryjoe.deviantart.com
