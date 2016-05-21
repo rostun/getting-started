@@ -4,10 +4,8 @@
 	<head>
 		<title>webGL Yay!</title>
 		<script src="awesomeEngine.js"></script>
-		<!--download these-->
 		<script src="libraries/sylvester.js"></script>
 		<script src="libraries/glUtils.js"></script>
-		<!--download these-->
 	</head>
 	<body onload="initGL()"> 
 		<canvas id="someID"  width="640" height="480"> 
@@ -18,16 +16,12 @@
 		attribute vec3 position;
 		varying vec4 oPosition;
 		
-		//
 		uniform mat4 uMVMatrix;
 		uniform mat4 uPMatrix;		
-		//
 		
 		void main(void){
 			oPosition = vec4(position, 1.0);
-			//gl_Position = oPosition;
 			gl_Position = uPMatrix * uMVMatrix * oPosition;
-			//
 		}
 	</script>
 	<script id="shader-fs" type="x-shader/x-fragment">

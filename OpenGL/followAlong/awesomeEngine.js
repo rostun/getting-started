@@ -33,9 +33,8 @@ function initGL(){
 	gl.bindBuffer(gl.ARRAY_BUFFER, buffers.vbo);
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ibo);	
 	
-	//
 	var MVMatrix = Matrix.I(4);
-	var trans = Matrix.Translation($V([0.0, 0.0, -6.0])).ensure4x4();
+	var trans = Matrix.Translation($V([0.0, 0.0, -4.0])).ensure4x4();
 	MVMatrix = MVMatrix.x(trans);
 	var MVUniform = gl.getUniformLocation(program, "uMVMatrix");
 	gl.uniformMatrix4fv(MVUniform, false, new Float32Array(MVMatrix.flatten())); 
@@ -43,7 +42,6 @@ function initGL(){
 	var pMatrix = makePerspective(45, 640.0/480.0, 0.1, 100.0);
 	var pUniform = gl.getUniformLocation(program, "uPMatrix");
 	gl.uniformMatrix4fv(pUniform, false, new Float32Array(pMatrix.flatten()));
-	//
 
 	gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
 	

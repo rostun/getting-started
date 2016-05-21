@@ -20,6 +20,7 @@
 					<li> How WebGL and OpenGL fit into the graphics scene and how it works </li>
 					<li> How to set up a standard 3D Canvas</li>
 					<li> How to implement the WebGL API "quad" using indices </li>
+					<li> Implement a perspective matrix </li>
 				</ul>
 			</div>
 		</div>
@@ -716,19 +717,21 @@
 					}</code>
 				</div>	
 				
-			<p></p>
+			<p>So let's just dig in and go throuhg it chunk by chunk again.</p>
 			
 				<div class="info"><br>
 					<code><span class = "tab">var quadBuffer = gl.createBuffer();<br><br></code>
 				</div>
 			
-			<p></p>
+			<p>So we are finally creating our vertex buffer object, which we declare here. Right at this moment it's just an empty
+			buffer, getting read to hold stuff.</p>
 
 				<div class="info"><br>
 					<code><span class = "tab">gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);}<br><br></code>
 				</div>	
 				
-			<p></p>
+			<p>So now we need to put stuff in it! Here you're saying that this buffer is being bound to the openGL thing that is 
+			<strong><code>ARRAY_BUFFER</code></strong>, the official action that it's doing is binding quadBuffer to ARRAY_BUFFER.</p>
 			
 				<div class="info">
 					<code><span class = "tab">var vertices = [<br>
@@ -739,13 +742,16 @@
 					<span class = "tab">];</code>
 				</div>
 				
-			<p></p>
+			<p>Now here we are specifying what the vertices are, or in other words, the position of the quad vertices. Here is where you 
+			need to make sure you set up your geometry properly! So each role represents the x y and z coordinates. Actually it really is 
+			x y z w but here w is always 1 because bascially it lets you multiply the values with the matrix. </p>
 			
 				<div class="info"><br>
 					<code>gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);<br><br></code>
 				</div>
 				
-			<p></p>
+			<p>Here we're creating an array out of the vertices we just made (vertex information). <code>Float32Array</code> is a typed 
+			array that just exists in javascript. </p>
 
 				<div class="info">
 					<code><span class = "tab">var indexBuffer = gl.createBuffer();<br>
@@ -754,21 +760,32 @@
 					<span class = "tab">gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);</code>
 				</div>
 			
-			<p></p>
+			<p>So even though we're making a quad, what a quad really is is just two triangles. Think of what happens sometimes when you 
+			export or reduce your model, the most basic basic form of it is all in tris. </p>
 			
+				<center><strong>When our model is exported, all quads and surfaces reduce to triangles, remember?</strong></center>
+				<center><img src="../OpenGL/images/Triangle.jpg" alt="follow along" style="width:75%;height:75%;"></center>			
+			
+			<p>So in the chunk of code above we're actualling using <strong>index geometry</strong>, which you don't actually have to do, 
+			but what's great about it is it lets us reuse vertices. For example our quad is made out of two triangles which means we have 6 
+			vertices total, but two vertices overlapping or reused. </p>
+			
+			<center><img src="../OpenGL/images/startIndex.png" alt="follow along" style="width:75%;height:75%;"></center>
+			
+			<p>So the index will let us reuse an existing vertex. The rows above will label the verticess as 0, 1, 2, and 3. So you can see 
+			in our <code>indices</code> we have two triangles with vertices <strong>2 1 0</strong> and <strong>3 2 0</strong> and create an 
+			array out of them with this index information. </p>
+					
 				<div class="info">
 					<code><span class = "tab">var buffers = {vbo:quadBuffer, ibo:indexBuffer};<br>
 					<span class = "tab">return buffers;</code>
 				</div>				
 			
-			<p></p>
+			<p>So this line is basically javascript shorthand for making an object. We have our two properties (vbo and ibo) which stores 
+			both buffer objects to return. </p>	
 			
-				<div class="info">
-					<code><span class = "tab">var buffers = {vbo:quadBuffer, ibo:indexBuffer};<br>
-					<span class = "tab">return buffers;</code>
-				</div>	
-			
-			<p></p>
+			<p>So finally we have a function we can use to complete the final step in our <code>initGl()</code> function and hopefully we 
+			should see that rainbow-y shader we made back in our html file, remember that? So pop the final form in:</p>
 			
 				<div class="info">
 					<code>gl.enableVertexAttribArray(positionAttributeLocation);<br><br>
@@ -780,43 +797,163 @@
 					return gl;</code>
 				</div>	
 			
-			<p></p>
+			<p>So all in all what w'ere doing is initializing the buffer step. Let's go chunk by chunk again. </p>
 			
 				<div class="info">
 					<code>var buffers = initBuffers();<br>
 					gl.vertexAttribPointer(positionAttributeLocation, 3, gl.FLOAT, false, 0, 0);</code>
 				</div>	
 
-			<p></p>
+			<p>So here we are initializing our buffers, calling our function we just made. And then the next line: <code>
+			gl.vertexAttribPointer(positionAttributeLocation, 3, gl.Float, false, 0, 0);</code> we're inputting 6 things. First is again, 
+			the position variable from before. The second slot is specifying that the data we have is in groups of three. Which makes sense
+			since every point has an x, y, z which is three parameters. gl.Float is the type, and finally the last two are <strong>stride</strong>
+			and <strong>offset</strong>. So stride. You can interweave the data you pass in so that in your array you're taking in the position, 
+			then normal, then uv, all in one array. Basically telling the function how many it skips from one to another type. But here, we only 
+			have position so our stride is 0. Offset is also zero (if we had normal and uv then we have 6 normals, then 6 uvs, etc). </p>
 			
 				<div class="info">
 					<code>gl.bindBuffer(gl.ARRAY_BUFFER, buffers.vbo);<br>
 					gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ibo);</code>
 				</div>
 				
-			<p></p>
+			<p>So these two lines are our vertex buffer object and index buffer object that specifies what we want to draw. We need to bind those 
+			again before we draw. </p>
 			
 				<div class="info"><br>
 					<code>gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);<br><br></code>
 				</div>
 			
-			<p></p>
-			<center><img src="../OpenGL/images/startIndex.png" alt="follow along" style="width:75%;height:75%;"></center>
+			<p>Okay so the arguments that <code>gl.drawElements</code> takes are four: mode, number, type, and offset. Mode is how you want to 
+			draw whatever it is you want to draw, could be points, lines, triangles, triangle strip, etc. So <code>TRIANGLES</code> is basically 
+			saying to draw these unconnected triangles. Number is asking how many indices we are drawing (size of array which is 6 in this case). 
+			Type is the type of the number we are giving it, which is either an unsigned byte or an unsigned short (short is 16 bit integer, 
+			other is 8). And finally hte offset is where we want to start in the array, but again, since we're doing something pretty simple we're 
+			just starting at the beginning, which is 0. </p>
+			
+			<p>So finally, when you refresh your browser, we can see (hopefully, example files are supplied after this) our shader!!!</p>
 			
 				<center><img src="../OpenGL/images/error.png" alt="follow along" style="width:75%;height:75%;"></center>
 			
-			<p>Do the viewport example here</p>
+			<p>Oh, but now that we have our shader, perfect time for a quick viewport pop over! If you change you width and height dimensions in the 
+			viewport line of <code>initGL()</code> NOW you will see the difference between the viewport and the canvas. I just changed mine to like 
+			300 by 300 or something. If you want to change the position those are the first two arguments, which i still kept at 0 and 0</p>
 			
 				<center><img src="../OpenGL/images/viewport.png" alt="follow along" style="width:75%;height:75%;"></center>
-				
-			<script src="https://gist.github.com/rostun/664db2b5c7ce0905d626132b0cdc126c.js"></script>
 			
+			<p>And finally, if you have fudgy fingers or copied something wrong, here is your insurance: </p>
+			<script src="https://gist.github.com/rostun/664db2b5c7ce0905d626132b0cdc126c.js"></script>
 		</div>		
+		
 		<div id = "10" onclick="window.location.hash='back'; " class = "wrapper">
 			<h3><a href="#top">10</a> Model View Matrix and Camera View </h3>
-			<center><img src="../OpenGL/images/perspectvsortho.png" alt="follow along" style="width:75%;height:75%;"></center>
-			<script src="https://gist.github.com/rostun/aa1b99f4b7f157554ef834614c89609a.js"></script>
-			<script src="https://gist.github.com/rostun/244c8495cbc5f1afb83d7847e9c4b567.js"></script>
+			
+			<p>In real life everything is in perspective view because that is just how the human sight works. However, in the digital world you can 
+			have different kinds of cameras with different kinds of lenses and different ways they will intepret spatial relationships. It's sort of 
+			like the ability to turn perspective on or off in zbrush/maya. Your model will always LOOK more realistic in perspective view but when 
+			you're sculpting and trying to make everything right, sometimes it's better to turn that option off and make sure that all your dimensions 
+			are correct. Anyways, here are two examples, 2D and 3D. </p>
+				
+				<center><strong>Right now our stuff is set up like the quad on the right</strong></center>
+				<center><img src="../OpenGL/images/perspectvsortho.png" alt="follow along" style="width:75%;height:75%;"></center>
+			
+			<p>So this is the last thing we're going to do in this guide. To make things easier on us we're going to need two libraries to draw from:
+			<a href="http://sylvester.jcoglan.com/">Sylvester</a> and <a href="https://github.com/mdn/webgl-examples/blob/gh-pages/tutorial/glUtils.js">glUtils</a>. 
+			Sylvestor will give you the js files already and jlUtils you might have to copy paste the content in a file and name it glUtils with a js extension. Put
+			those files in a folder called "libraries" like below: </p>
+				
+				<center><img src="../OpenGL/images/libraries.png" alt="follow along" style="width:75%;height:75%;"></center>
+				<center><img src="../OpenGL/images/libraries2.png" alt="follow along" style="width:75%;height:75%;"></center>
+			
+			<p>The two sylvestor files actually have the same content, one is just compressed to save space, but I like to keep the uncompressed version 
+			just in case I'm not using a function correctly, I can then go over and take a peek without breaking my eyes. So we're going to add these two
+			libraries just how we would add the js file, except with a reference to our libraries folder: </p>
+				
+				<div class="info">
+					<code>&ltscript src="awesomeEngine.js"&gt&lt/script&gt<br><strong>
+					&ltscript src="libraries/sylvester.js"&gt&lt/script&gt<br>
+					&ltscript src="libraries/glUtils.js"&gt&lt/script&gt</strong></code>
+				</div>				
+			
+			<p>So these libraries are for matrix and vector math, it makes things a lot easier for us. They supply nice utility functions for making perspective
+			matrices and frustums (a frustum is kind of like a four sided pyramid with the top cut off). Basically, this whole thing is for making a 
+			perspective matrix. A perspective matrix is this math thing you need to make that isn't really that interesting unless you're a math person and even 
+			then it's pretty not interesting. We could just copy those, but they've done it already so there's really no need to rewrite the code. Or, I mean, you 
+			could if you want to, come back when you have! </code>
+			
+			<p>So now we're going to add two lines and alter a third in our vertex shader script: </p>
+			
+				<div class="info">
+					<code>varying vec4 oPosition;<br><br><strong>
+					uniform mat4 uMVMatrix;<br>
+					uniform mat4 uPMatrix;<br><br></strong>
+					void main(void){<br>
+					<span class = "tab">oPosition = vec4(position, 1.0);<br><strong>
+					<span class = "tab">gl_Position = uPMatrix * uMVMatrix * oPosition;<br></strong>
+					}</code>
+				</div>					
+			
+			<p>So your uniforms are global variables for all the shaders. The first uniform is the model view matrix and the second uniform 
+			is the perspective matrix. <strong>Model View Matrix</strong> lets you reposition your object, it's basically how you move stuff 
+			around aka the positioning in space of your vertex. <strong>uP</strong> is for camera view (we get a library) and will let us 
+			do perspective projection. Fun fact, in the new 2D Unity they turn this off. Anyways, the second matrix is basically our 
+			perspective matrix (camera). What we're doing in our <strong>gl_Position</strong> is modifying the uPMatrix and uMVMatrix. </p>
+			
+			<p>Finally, let's add these lines to our js function: </p>
+				
+				<div class="info">
+					<code>gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffers.ibo);<br><br><strong>
+					var MVMatrix = Matrix.I(4);<br>
+					var trans = Matrix.Translation($V([0.0, 0.0, -4.0])).ensure4x4();<br>
+					MVMatrix = MVMatrix.x(trans);<br>
+					var MVUniform = gl.getUniformLocation(program, "uMVMatrix");<br>
+					gl.uniformMatrix4fv(MVUniform, false, new Float32Array(MVMatrix.flatten()));<br><br>
+					var pMatrix = makePerspective(45, 640.0/480.0, 0.1, 100.0);<br>
+					var pUniform = gl.getUniformLocation(program, "uPMatrix");<br>
+					gl.uniformMatrix4fv(pUniform, false, new Float32Array(pMatrix.flatten()));<br><br></strong>
+					gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);</code>
+				</div>			
+			
+			<p>So this produces our quad in perspective view! If you play around wit the makePerspective and .Translation you'll notice you can 
+			alter this view.</p>
+			
+				<center><img src="../OpenGL/images/final.png" alt="follow along" style="width:75%;height:75%;"></center>
+			
+			<p>So our last chunk by chunk!</p>
+				
+				<div class="info"><br>
+					<code>var MVMatrix = Matrix.I(4);<br><br></code>
+				</div>
+				
+			<p>So this line will give you a 4 by 4 identity matrix using Sylveters handy dandy function</p>
+				
+				<div class="info">
+					<code>var trans = Matrix.Translation($V([0.0, 0.0, -4.0])).ensure4x4();<br>
+					MVMatrix = MVMatrix.x(trans);</code>
+				</div>	
+
+			<p>Matrix.x multiplies a matrix by another matrix and then the matrix we're multiplying by is a translation matrix moving it -6 in 
+			the z direction. So everything in our square willl be moved back into the scene by -6. </p>
+				
+				<div class="info"><br>
+					<code>var MVUniform = gl.getUniformLocation(program, "uMVMatrix");<br><br></code>
+				</div>		
+				
+			<p>Get the uniform location! (vs attribute location from before)</p>
+				
+				<div class="info">
+					<code>gl.uniformMatrix4fv(MVUniform, false, new Float32Array(MVMatrix.flatten()));<br><br>
+					var pMatrix = makePerspective(45, 640.0/480.0, 0.1, 100.0);<br>
+					var pUniform = gl.getUniformLocation(program, "uPMatrix");<br>
+					gl.uniformMatrix4fv(pUniform, false, new Float32Array(pMatrix.flatten()));</strong></code>
+				</div>	
+			
+			<p>And finally we specify our parameters. We set the location, say falses for normalized, and specify the data. Sylvester stores MVMatrix
+			as something nicer, but you need it as a single array, and so that float object will give it to you in that. </p>
+			
+			<p>So there you go, a nice little introduction to WebGL and graphics. Here are the finished example files below!</p>
+				<script src="https://gist.github.com/rostun/aa1b99f4b7f157554ef834614c89609a.js"></script>
+				<script src="https://gist.github.com/rostun/244c8495cbc5f1afb83d7847e9c4b567.js"></script>
 		</div>
 		<div>
 			cupcake bullet by blueberryjoe.deviantart.com
